@@ -38,6 +38,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('admin.profile.edit')">
+                            {{ __('Admin Profile') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('admin.logout') }}">
                             @csrf

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VendorProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\VendorProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,12 @@ Route::middleware('auth:vendor')->prefix('vendor')->name('vendor.')->group(funct
     Route::get('/profile', [VendorProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [VendorProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [VendorProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [AdminProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';
