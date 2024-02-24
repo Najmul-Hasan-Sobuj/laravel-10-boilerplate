@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PasswordController;
@@ -60,4 +61,8 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::patch('role/{roleId}/give-permission', [RoleController::class, 'storePermission'])->name('role.store-permission');
     Route::resource('permission', PermissionController::class)->except(['show']);
     Route::resource('user', UserController::class)->except(['show']);
+    Route::get('log', [LogController::class, 'index'])->name('log.index');
+    Route::get('log/{id}', [LogController::class, 'show'])->name('log.show');
+    Route::delete('log/{name}', [LogController::class, 'destroy'])->name('log.destroy');
+    Route::get('log/download/{id}', [LogController::class, 'download'])->name('log.download');
 });
