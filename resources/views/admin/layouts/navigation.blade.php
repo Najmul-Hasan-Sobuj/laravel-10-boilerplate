@@ -17,17 +17,17 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.role.index')" :active="request()->routeIs('admin.role.index')">
+                    <x-nav-link :href="route('admin.role.index')" :active="request()->routeIs('admin.role.*')">
                         {{ __('Role') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.permission.index')" :active="request()->routeIs('admin.permission.index')">
+                    <x-nav-link :href="route('admin.permission.index')" :active="request()->routeIs('admin.permission.*')">
                         {{ __('Permission') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
+                    <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.*')">
                         {{ __('User') }}
                     </x-nav-link>
                 </div>
