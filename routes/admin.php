@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PasswordController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\NewPasswordController;
@@ -65,4 +66,5 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('log/{id}', [LogController::class, 'show'])->name('log.show');
     Route::delete('log/{name}', [LogController::class, 'destroy'])->name('log.destroy');
     Route::get('log/download/{id}', [LogController::class, 'download'])->name('log.download');
+    Route::resource('categories', CategoryController::class);
 });
