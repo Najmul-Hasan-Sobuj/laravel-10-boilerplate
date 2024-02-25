@@ -43,9 +43,7 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $log['name'] }}
                                 </td>
-                                <td scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $log['date'] }}
+                                <td x-data="{ date: '{{ $log['date'] }}' }" x-text="date" x-init="setInterval(() => date = new Date().toLocaleString(), 1000)">
                                 </td>
                                 <td scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -56,12 +54,12 @@
                                     {{ $log['size'] }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.log.show', $log['name']) }}">Preview</a>
-                                    <a href="{{ route('admin.log.download', $log['name']) }}">Download</a>
+                                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{ route('admin.log.show', $log['name']) }}">Preview</a>
+                                    <a class="font-medium text-teal-600 dark:text-teal-600 hover:underline" href="{{ route('admin.log.download', $log['name']) }}">Download</a>
                                     <form action="{{ route('admin.log.destroy', $log['name']) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit">Delete</button>
+                                        <button class="font-medium text-red-600 dark:text-red-600 hover:underline" type="submit">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -76,5 +74,4 @@
             </div>
         </div>
     </div>
-
 </x-admin-app-layout>

@@ -24,11 +24,10 @@ class LogController extends Controller
             return [
                 'name' => $item->getFilename(),
                 'last_modified' => Carbon::createFromTimestamp($item->getMTime())->diffForHumans(),
-                'size' => $item->getSize(),
+                'size' => number_format($item->getSize() / 1024, 2) . ' KB',
                 'date' => Carbon::createFromTimestamp($item->getMTime())->toDateTimeString()
             ];
         });
-
         return view('admin.pages.logs.index', ['logs' => $logs]);
     }
 
@@ -37,9 +36,7 @@ class LogController extends Controller
      */
     public function show(string $id)
     {
-        $content = File::get($this->logPath . '/' . $id);
-
-        return view('admin.pages.logs.show', compact('content'));
+        return view('admin.pages.logs.show', ['content' => File::get($this->logPath . '/' . $id)]);
     }
 
     public function download($id)
