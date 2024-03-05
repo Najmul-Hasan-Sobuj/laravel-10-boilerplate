@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\Vendor\AuthenticatedSessionController;
-use App\Http\Controllers\Vendor\ConfirmablePasswordController;
-use App\Http\Controllers\Vendor\EmailVerificationNotificationController;
-use App\Http\Controllers\Vendor\EmailVerificationPromptController;
-use App\Http\Controllers\Vendor\NewPasswordController;
-use App\Http\Controllers\Vendor\PasswordController;
-use App\Http\Controllers\Vendor\PasswordResetLinkController;
-use App\Http\Controllers\Vendor\RegisteredUserController;
-use App\Http\Controllers\Vendor\VerifyEmailController;
+use App\Http\Controllers\Vendor\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Vendor\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Vendor\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Vendor\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Vendor\Auth\NewPasswordController;
+use App\Http\Controllers\Vendor\Auth\PasswordController;
+use App\Http\Controllers\Vendor\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Vendor\Auth\RegisteredUserController;
+use App\Http\Controllers\Vendor\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:vendor')->prefix('vendor')->name('vendor.')->group(function () {

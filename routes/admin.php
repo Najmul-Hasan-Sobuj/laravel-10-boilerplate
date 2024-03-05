@@ -5,16 +5,17 @@ use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\PasswordController;
+use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\NewPasswordController;
-use App\Http\Controllers\Admin\VerifyEmailController;
-use App\Http\Controllers\Admin\PasswordResetLinkController;
-use App\Http\Controllers\Admin\ConfirmablePasswordController;
-use App\Http\Controllers\Admin\AuthenticatedSessionController;
-use App\Http\Controllers\Admin\EmailVerificationPromptController;
-use App\Http\Controllers\Admin\EmailVerificationNotificationController;
-
+use App\Http\Controllers\Admin\ActivityLogController;
+use App\Http\Controllers\Admin\Auth\NewPasswordController;
+use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\EmailSettingController;
+use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -35,7 +36,7 @@ Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(functio
         ->name('password.store');
 });
 
-Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth:admin', 'role:admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
@@ -57,14 +58,25 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
-    Route::resource('role', RoleController::class)->except(['show']);
+    Route::resources(
+        [
+            'role'           => RoleController::class,
+            'permission'     => PermissionController::class,
+            'user'           => UserController::class,
+            'email-settings' => EmailSettingController::class,
+        ],
+        ['except' => ['show']]
+    );
+
     Route::get('role/{roleId}/give-permission', [RoleController::class, 'givePermission'])->name('role.give-permission');
     Route::patch('role/{roleId}/give-permission', [RoleController::class, 'storePermission'])->name('role.store-permission');
-    Route::resource('permission', PermissionController::class)->except(['show']);
-    Route::resource('user', UserController::class)->except(['show']);
     Route::get('log', [LogController::class, 'index'])->name('log.index');
     Route::get('log/{id}', [LogController::class, 'show'])->name('log.show');
     Route::delete('log/{name}', [LogController::class, 'destroy'])->name('log.destroy');
     Route::get('log/download/{id}', [LogController::class, 'download'])->name('log.download');
     Route::resource('categories', CategoryController::class);
+
+    Route::get('/activity_logs', [ActivityLogController::class, 'index'])->name('activity_logs.index');
+    Route::get('/activity_logs/{activity_log}', [ActivityLogController::class, 'show'])->name('activity_logs.show');
+    Route::delete('/activity_logs/{activity_log}', [ActivityLogController::class, 'destroy'])->name('activity_logs.destroy');
 });

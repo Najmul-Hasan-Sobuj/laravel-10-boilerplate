@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use App\Events\ActivityLogged;
 use Illuminate\Validation\Rules;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\RedirectResponse;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 
@@ -53,6 +54,7 @@ class UserController extends Controller
         $user->syncRoles($request->roles);
 
         event(new Registered($user));
+        event(new ActivityLogged('User created', $user));
 
         return redirect()->back()->with('success', 'User created successfully');
     }
@@ -97,6 +99,8 @@ class UserController extends Controller
             $user->syncRoles($request->roles);
         }
 
+        event(new ActivityLogged('User updated', $user));
+
         return redirect()->back()->with('success', 'User updated successfully');
     }
 
@@ -105,7 +109,10 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        Admin::findOrFail($id)->delete();
+        $user = Admin::findOrFail($id);
+        $user->delete();
+
+        event(new ActivityLogged('User deleted', $user));
 
         return redirect()->back()->with('success', 'User deleted successfully');
     }
