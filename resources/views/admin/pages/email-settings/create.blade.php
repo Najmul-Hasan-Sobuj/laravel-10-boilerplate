@@ -1,0 +1,94 @@
+<x-admin-app-layout>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <form method="POST" action="{{ route('admin.email-settings.store') }}">
+                @csrf
+
+                <!-- Mailer -->
+                <div>
+                    <x-input-label for="mail_mailer" :value="__('Mailer')" />
+                    <x-text-input id="mail_mailer" class="block mt-1 w-full" type="text" name="mail_mailer"
+                        :value="old('mail_mailer')" required autofocus autocomplete="mail_mailer" />
+                    <x-input-error :messages="$errors->get('mail_mailer')" class="mt-2" />
+                </div>
+
+                <!-- Host -->
+                <div>
+                    <x-input-label for="mail_host" :value="__('Host')" />
+                    <x-text-input id="mail_host" class="block mt-1 w-full" type="text" name="mail_host"
+                        :value="old('mail_host')" required autofocus autocomplete="mail_host" />
+                    <x-input-error :messages="$errors->get('mail_host')" class="mt-2" />
+                </div>
+
+                <!-- Port -->
+                <div>
+                    <x-input-label for="mail_port" :value="__('Port')" />
+                    <x-text-input id="mail_port" class="block mt-1 w-full" type="text" name="mail_port"
+                        :value="old('mail_port')" required autofocus autocomplete="mail_port" />
+                    <x-input-error :messages="$errors->get('mail_port')" class="mt-2" />
+                </div>
+
+                <!-- Username -->
+                <div>
+                    <x-input-label for="mail_username" :value="__('Username')" />
+                    <x-text-input id="mail_username" class="block mt-1 w-full" type="text" name="mail_username"
+                        :value="old('mail_username')" required autofocus autocomplete="mail_username" />
+                    <x-input-error :messages="$errors->get('mail_username')" class="mt-2" />
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <x-input-label for="mail_password" :value="__('Password')" />
+                    <x-text-input id="mail_password" class="block mt-1 w-full" type="password" name="mail_password"
+                        :value="old('mail_password')" required autofocus autocomplete="mail_password" />
+                    <x-input-error :messages="$errors->get('mail_password')" class="mt-2" />
+                </div>
+
+                <!-- Encryption -->
+                <div>
+                    <x-input-label for="mail_encryption" :value="__('Encryption')" />
+                    <select id="mail_encryption" name="mail_encryption" class="block mt-1 w-full">
+                        <option value="" disabled selected></option>
+                        <option value="ssl" {{ old('mail_encryption') == 'ssl' ? 'selected' : '' }}>SSL</option>
+                        <option value="tls" {{ old('mail_encryption') == 'tls' ? 'selected' : '' }}>TLS</option>
+                    </select>
+                    <x-input-error :messages="$errors->get('mail_encryption')" class="mt-2" />
+                </div>
+
+                <!-- From Address -->
+                <div>
+                    <x-input-label for="mail_from_address" :value="__('From Address')" />
+                    <x-text-input id="mail_from_address" class="block mt-1 w-full" type="text"
+                        name="mail_from_address" :value="old('mail_from_address')" required autofocus
+                        autocomplete="mail_from_address" />
+                    <x-input-error :messages="$errors->get('mail_from_address')" class="mt-2" />
+                </div>
+
+                <!-- From Name -->
+                <div>
+                    <x-input-label for="mail_from_name" :value="__('From Name')" />
+                    <x-text-input id="mail_from_name" class="block mt-1 w-full" type="text" name="mail_from_name"
+                        :value="old('mail_from_name')" required autofocus autocomplete="mail_from_name" />
+                    <x-input-error :messages="$errors->get('mail_from_name')" class="mt-2" />
+                </div>
+
+                <!-- Status -->
+                <div>
+                    <x-input-label for="status" :value="__('Status')" />
+                    <select id="status" name="status" class="block mt-1 w-full">
+                        <option disabled selected></option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <x-input-error :messages="$errors->get('status')" class="mt-2" />
+                </div>
+
+                <div class="flex items-center justify-end mt-4">
+                    <x-primary-button class="ml-4">
+                        {{ __('Submit') }}
+                    </x-primary-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</x-admin-app-layout>
