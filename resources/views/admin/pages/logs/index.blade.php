@@ -121,7 +121,7 @@
                                             data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="{{ route('admin.log.show', $log['name']) }}"
+                                                <a href="{{ route('admin.log.show', $log['id']) }}"
                                                     class="menu-link px-3">Preview</a>
                                             </div>
                                             <!--end::Menu item-->
