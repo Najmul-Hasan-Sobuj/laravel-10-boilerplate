@@ -1,64 +1,80 @@
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
-    </header>
-
+<!--begin::Profile Information-->
+<div class="card">
+    <!--begin::Card header-->
+    <div class="card-header border-0 cursor-pointer">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0"> {{ __('Profile Information') }} </h3>
+        </div>
+    </div>
+    <!--end::Card header-->
     <form id="send-verification" method="post" action="{{ route('admin.verification.send') }}">
         @csrf
     </form>
-
-    <form method="post" action="{{ route('admin.profile.update') }}" class="mt-6 space-y-6">
+    <!--begin::Content-->
+    <!--begin::Form-->
+    <form class="form" method="post" action="{{ route('admin.profile.update') }}">
         @csrf
         @method('patch')
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
-        </div>
+        <!--begin::Card body-->
+        <div class="card-body border-top p-9">
+            <!--begin::Input group-->
+            <div class="mb-10 fv-row">
+                <!--begin::Label-->
+                <label class="required form-label">{{ __('Name') }}</label>
+                <!--end::Label-->
+                <!--begin::Input-->
+                <input type="text" name="name" class="form-control mb-2" placeholder="Name"
+                    value="{{ old('name', $user->name) }}" />
+                <!--end::Input-->
+                <!--begin::Error-->
+                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                <!--end::Error-->
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="mb-10 fv-row">
+                <!--begin::Label-->
+                <label class="required form-label">{{ __('Email') }}</label>
+                <!--end::Label-->
+                <!--begin::Input-->
+                <input type="email" name="email" class="form-control mb-2" placeholder="Email"
+                    value="{{ old('email', $user->email) }}" />
+                <!--end::Input-->
+                <!--begin::Error-->
+                <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                <!--end::Error-->
+                @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
+                    <div>
+                        <p class="small mt-2 text-secondary">
+                            {{ __('Your email address is unverified.') }}
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
-
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
-
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
+                            <button form="send-verification"
+                                class="text-decoration-underline small text-secondary hover:text-dark rounded-0 focus:outline-none"
+                                style="border: none; box-shadow: none;" onclick="this.blur();">
+                                {{ __('Click here to re-send the verification email.') }}
+                            </button>
                         </p>
-                    @endif
-                </div>
-            @endif
-        </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+                        @if (session('status') === 'verification-link-sent')
+                            <p class="mt-2 fw-semibold small text-success">
+                                {{ __('A new verification link has been sent to your email address.') }}
+                            </p>
+                        @endif
+                    </div>
+                @endif
 
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
-            @endif
+            </div>
+            <!--end::Input group-->
         </div>
+        <!--end::Card body-->
+        <!--begin::Card footer-->
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <button type="submit" class="btn btn-primary fw-bold">{{ __('Submit') }}</button>
+        </div>
+        <!--end::Card footer-->
     </form>
-</section>
+    <!--end::Form-->
+    <!--end::Content-->
+</div>
+<!--end::Profile Information-->

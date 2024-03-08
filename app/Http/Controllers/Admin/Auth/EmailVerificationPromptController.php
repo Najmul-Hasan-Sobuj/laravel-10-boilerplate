@@ -17,6 +17,6 @@ class EmailVerificationPromptController extends Controller
     {
         return $request->user()->hasVerifiedEmail()
             ? redirect()->intended(RouteServiceProvider::ADMIN_HOME)
-            : view('admin.verify-email');
+            : view('admin.auth.verify-email');
     }
 }
