@@ -22,6 +22,7 @@ class LogController extends Controller
     {
         $logs = collect(File::files($this->logPath))->map(function ($item) {
             return [
+                'id' => md5($item->getFilename()), // Unique identifier
                 'name' => $item->getFilename(),
                 'last_modified' => Carbon::createFromTimestamp($item->getMTime())->diffForHumans(),
                 'size' => number_format($item->getSize() / 1024, 2) . ' KB',
@@ -47,10 +48,15 @@ class LogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $name)
+    public function destroy(string $id)
     {
-        File::delete($this->logPath . '/' . $name);
-
-        return redirect()->back()->with('success', 'Log file deleted successfully');
+        $files = File::files($this->logPath);
+        foreach ($files as $file) {
+            if (md5($file->getFilename()) == $id) {
+                // Delete the file
+                File::delete($file->getPathname());
+                break;
+            }
+        }
     }
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
+
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -72,7 +73,7 @@ Route::middleware('auth:admin', 'role:admin')->prefix('admin')->name('admin.')->
     Route::patch('role/{roleId}/give-permission', [RoleController::class, 'storePermission'])->name('role.store-permission');
     Route::get('log', [LogController::class, 'index'])->name('log.index');
     Route::get('log/{id}', [LogController::class, 'show'])->name('log.show');
-    Route::delete('log/{name}', [LogController::class, 'destroy'])->name('log.destroy');
+    Route::delete('log/{id}', [LogController::class, 'destroy'])->name('log.destroy');
     Route::get('log/download/{id}', [LogController::class, 'download'])->name('log.download');
     Route::resource('categories', CategoryController::class);
 

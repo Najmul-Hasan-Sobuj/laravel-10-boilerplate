@@ -124,6 +124,8 @@
     <script src="{{ asset('admin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <script src="{{ asset('admin/js/custom.js') }}"></script>
+
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 
