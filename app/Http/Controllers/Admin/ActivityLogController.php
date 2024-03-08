@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ActivityLog;
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 
 class ActivityLogController extends Controller
@@ -19,10 +17,8 @@ class ActivityLogController extends Controller
         return view('admin.pages.activity_logs.show', compact('activityLog'));
     }
 
-    public function destroy(ActivityLog $activity_log): RedirectResponse
+    public function destroy(ActivityLog $activity_log)
     {
         $activity_log->delete();
-
-        return redirect()->route('admin.activity_logs.index')->with('success', 'Activity log deleted successfully');
     }
 }
