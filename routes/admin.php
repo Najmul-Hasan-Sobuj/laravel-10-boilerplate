@@ -56,6 +56,8 @@ Route::middleware('auth:admin', 'role:admin')->prefix('admin')->name('admin.')->
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
+    Route::post('check-password', [PasswordController::class, 'checkPassword'])->name('checkPassword');
+
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 

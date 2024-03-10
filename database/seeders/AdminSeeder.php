@@ -15,16 +15,25 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        // Admin::factory(1)->create();
-        // create an admin user
-        $admin = Admin::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('password'),
-        ]);
+        // Create the first admin user
+    $admin1 = Admin::factory()->create([
+        'name' => 'Admin User',
+        'email' => 'admin@example.com',
+        'password' => Hash::make('password'),
+    ]);
 
-        // assign the admin role to the admin user
-        $adminRole = Role::where('name', 'admin')->first();
-        $admin->assignRole($adminRole);
+    // Assign role to the first admin user
+    $adminRole = Role::where('name', 'admin')->first();
+    $admin1->assignRole($adminRole);
+
+    // Create another admin user
+    $admin2 = Admin::factory()->create([
+        'name' => 'Khandker Shahed',
+        'email' => 'khandkershahed23@gmail.com',
+        'password' => Hash::make('password'),
+    ]);
+
+    // Assign role to the second admin user
+    $admin2->assignRole($adminRole);
     }
 }

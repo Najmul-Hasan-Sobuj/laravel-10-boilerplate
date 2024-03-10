@@ -54,4 +54,92 @@ $(document).on('click', '.delete', function (e) {
         }
     });
 });
+
+
+// --------------------------------
+// Delete Account with reload page
+$(document).on('click', '.delete-account', async function (e) {
+    e.preventDefault();
+
+    var deleteAccountUrl = $(this).attr('href');
+    var checkPasswordUrl = $(this).data('check-password-url');
+    const { value: password } = await Swal.fire({
+        title: "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
+        input: "password",
+        // inputLabel: "Password",
+        inputPlaceholder: "Enter your password",
+        inputAttributes: {
+            maxlength: "30",
+            autocapitalize: "off",
+            autocorrect: "off"
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        buttonsStyling: false,
+        customClass: {
+            confirmButton: 'btn btn-danger',
+            cancelButton: 'btn btn-success'
+        }
+    });
+
+    if (password) {
+        // Check if the entered password matches the user's password in the database
+        $.ajax({
+            url: checkPasswordUrl,
+            type: 'POST',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                password: password,
+            },
+            success: function (response) {
+                if (response.success) {
+                    // Password matches, proceed with deletion
+                    $.ajax({
+                        url: deleteAccountUrl,
+                        type: 'DELETE',
+                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                        success: function (data) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your Account has been deleted.',
+                                'success'
+                            ).then(function () {
+                                // location.reload();
+                                window.location.href = '/';
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            Swal.fire(
+                                'Error Occurred!',
+                                error,
+                                'error'
+                            );
+                        }
+                    });
+                } else {
+                    // Password does not match, show error message
+                    Swal.fire(
+                        'Error Occurred!',
+                        response.message,
+                        'error'
+                    );
+                }
+            },
+            error: function (xhr, status, error) {
+                Swal.fire(
+                    'Error Occurred!',
+                    'An error occurred while checking the password. Please try again.',
+                    'error'
+                );
+            }
+        });
+    } else {
+        Swal.fire(
+            'Cancelled',
+            'Your Account is safe :)',
+            'error'
+        );
+    }
+});
 // --------------------------------

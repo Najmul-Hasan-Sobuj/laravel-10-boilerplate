@@ -40,21 +40,22 @@ class AdminProfileController extends Controller
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
 
+    public function destroy(Request $request)
+    {
+            // $request->validateWithBag('userDeletion', [
+            //     'password' => ['required', 'current_password'],
+            // ]);
+
+        // Get the authenticated admin user
         $user = $request->user();
 
         Auth::guard('admin')->logout();
 
         $user->delete();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        // return Redirect::to('/');
+        // return redirect('/');
     }
 }
