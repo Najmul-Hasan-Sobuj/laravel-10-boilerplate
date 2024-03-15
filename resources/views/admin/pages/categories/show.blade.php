@@ -1,9 +1,10 @@
 <x-admin-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h2 class="font-bold text-xl mb-4">Category Name: <p class="text-gray-500">{{ $category->name }}</p>
+    <div class="py-5">
+        <div class="container mx-auto px-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="font-weight-bold mb-4">Category Name: <p class="text-muted fs-4">
+                            {{ $category->name }}</p>
                     </h2>
 
                     <div class="mb-4">
@@ -24,12 +25,12 @@
                     @if ($category->children->isNotEmpty())
                         <div class="mb-4">
                             <p><strong>Child Categories ({{ $category->children->count() }}):</strong></p>
-                            <ul class="list-disc pl-5">
+                            <ul class="ps-3">
                                 @foreach ($category->children as $child)
                                     <li>
                                         <strong>Child:</strong> {{ $child->name }}
                                         @if ($child->children->isNotEmpty())
-                                            <ul class="list-disc pl-5">
+                                            <ul class="ps-3">
                                                 @foreach ($child->children as $grandchild)
                                                     <li><strong>Grandchild:</strong> {{ $grandchild->name }}</li>
                                                 @endforeach
@@ -40,6 +41,9 @@
                             </ul>
                         </div>
                     @endif
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('admin.categories.index') }}" class="text-primary">Back to Activity Logs</a>
+                    </div>
                 </div>
             </div>
         </div>

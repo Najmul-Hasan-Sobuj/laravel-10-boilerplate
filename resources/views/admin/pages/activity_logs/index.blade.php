@@ -47,12 +47,12 @@
                                     </div>
                                 </th>
                                 <th class="min-w-150px">Causer Type</th>
-                                <th class="min-w-150px">Causer</th>
-                                <th class="min-w-150px">Event</th>
-                                <th class="min-w-150px">Subject Type</th>
-                                <th class="min-w-150px">Subject</th>
+                                <th class="min-w-80px">Causer</th>
+                                <th class="min-w-130px">Event</th>
+                                <th class="min-w-70px">Subject Type</th>
+                                <th class="min-w-130px">Subject</th>
                                 <th class="min-w-150px">Date</th>
-                                <th class="text-end min-w-70px">Action</th>
+                                <th class="text-end min-w-90px">Action</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -70,34 +70,34 @@
                                     </td>
                                     <!--end::Checkbox-->
                                     <td>
-                                        <!--begin::Sl-->
+                                        <!--begin::user_type-->
                                         <span class="fw-bolder">{{ $log->user_type }}</span>
-                                        <!--end::Sl-->
+                                        <!--end::user_type-->
                                     </td>
                                     <td>
-                                        <!--begin::Sl-->
+                                        <!--begin::user_id-->
                                         <span class="fw-bolder">{{ $log->user_id }}</span>
-                                        <!--end::Sl-->
+                                        <!--end::user_id-->
                                     </td>
                                     <td>
-                                        <!--begin::Sl-->
+                                        <!--begin::description-->
                                         <span class="fw-bolder">{{ $log->description }}</span>
-                                        <!--end::Sl-->
+                                        <!--end::description-->
                                     </td>
                                     <td>
-                                        <!--begin::Sl-->
+                                        <!--begin::subject_type-->
                                         <span class="fw-bolder">{{ $log->subject_type }}</span>
-                                        <!--end::Sl-->
+                                        <!--end::subject_type-->
                                     </td>
                                     <td>
-                                        <!--begin::Sl-->
+                                        <!--begin::subject_id-->
                                         <span class="fw-bolder">{{ $log->subject_id }}</span>
-                                        <!--end::Sl-->
+                                        <!--end::subject_id-->
                                     </td>
                                     <td>
-                                        <!--begin::Sl-->
+                                        <!--begin::created_at-->
                                         <span class="fw-bolder">{{ $log->created_at->format('F j, Y, g:i a') }}</span>
-                                        <!--end::Sl-->
+                                        <!--end::created_at-->
                                     </td>
                                     <!--begin::Action=-->
                                     <td class="text-end">
