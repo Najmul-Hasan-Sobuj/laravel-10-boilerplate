@@ -73,13 +73,15 @@ Route::middleware('auth:admin', 'role:admin')->prefix('admin')->name('admin.')->
 
     Route::get('role/{roleId}/give-permission', [RoleController::class, 'givePermission'])->name('role.give-permission');
     Route::patch('role/{roleId}/give-permission', [RoleController::class, 'storePermission'])->name('role.store-permission');
+    
     Route::get('log', [LogController::class, 'index'])->name('log.index');
     Route::get('log/{id}', [LogController::class, 'show'])->name('log.show');
     Route::delete('log/{id}', [LogController::class, 'destroy'])->name('log.destroy');
     Route::get('log/download/{id}', [LogController::class, 'download'])->name('log.download');
+
     Route::resource('categories', CategoryController::class);
 
-    Route::get('/activity_logs', [ActivityLogController::class, 'index'])->name('activity_logs.index');
-    Route::get('/activity_logs/{activity_log}', [ActivityLogController::class, 'show'])->name('activity_logs.show');
-    Route::delete('/activity_logs/{activity_log}', [ActivityLogController::class, 'destroy'])->name('activity_logs.destroy');
+    Route::get('activity_logs', [ActivityLogController::class, 'index'])->name('activity_logs.index');
+    Route::get('activity_logs/{activity_log}', [ActivityLogController::class, 'show'])->name('activity_logs.show');
+    Route::delete('activity_logs/{activity_log}', [ActivityLogController::class, 'destroy'])->name('activity_logs.destroy');
 });

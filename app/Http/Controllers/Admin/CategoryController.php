@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\CategoryRequest;
 
 class CategoryController extends Controller
@@ -14,9 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('admin.pages.categories.index', [
-            'categories' => Category::active()->whereNull('parent_id')->with(['children' => function ($query) {
-                $query->active();
-            }])->get(),
+            'categories' => Category::with('children')->whereNull('parent_id')->get()
         ]);
     }
 
@@ -56,13 +55,13 @@ class CategoryController extends Controller
     {
         $categories = Category::active()->where('parent_id', $parentId)->where('id', '!=', $excludeId)->get();
         $options = '';
-    
+
         foreach ($categories as $category) {
             $selected = $category->id == $selectedId ? 'selected' : '';
             $options .= '<option value="' . $category->id . '" ' . $selected . '>' . $prefix . $category->name . '</option>';
             $options .= $this->buildCategoriesOptions($selectedId, $excludeId, $category->id, $prefix . '--');
         }
-    
+
         return $options;
     }
 
@@ -86,7 +85,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         return view('admin.pages.categories.show', [
-            'category' => Category::active()->findOrFail($id),
+            'category' => Category::findOrFail($id),
         ]);
     }
 
@@ -95,12 +94,11 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $category = Category::active()->findOrFail($id);
+        $category = Category::findOrFail($id);
         $categoriesOptions = $this->buildCategoriesOptions($category->parent_id, $category->id);
 
         return view('admin.pages.categories.edit', [
             'category' => $category,
-            'categories' => Category::active()->get(),
             'categoriesOptions' => $categoriesOptions,
         ]);
     }
@@ -125,7 +123,5 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         Category::findOrFail($id)->delete();
-
-        return redirect()->back()->with('success', 'Category deleted successfully');
     }
 }

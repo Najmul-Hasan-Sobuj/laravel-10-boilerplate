@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\File;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class LogController extends Controller
 {
@@ -35,9 +37,28 @@ class LogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        return view('admin.pages.logs.show', ['content' => File::get($this->logPath . '/' . $id)]);
+        $files = File::files($this->logPath);
+        $file = collect($files)->first(function ($file) use ($id) {
+            return md5($file->getFilename()) == $id;
+        });
+
+        if ($file === null) {
+            abort(404, 'Log file not found.');
+        }
+
+        $fileContent = File::get($file->getPathname());
+        $lines = collect(explode("\n", $fileContent));
+        $chunks = $lines->chunk(10);
+
+        $page = Paginator::resolveCurrentPage() ?: 1;
+        $items = $chunks->slice(($page - 1) * 10, 10)->all();
+        $chunks = new LengthAwarePaginator($items, count($chunks), 10, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+        ]);
+
+        return view('admin.pages.logs.show', ['chunks' => $chunks, 'id' => $id]);
     }
 
     public function download($id)
