@@ -29,46 +29,49 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</label>
+                        <x-metronic.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="email" name="email"
-                            required value="old('email', $request->email)" autofocus autocomplete="username" />
+                        <x-metronic.input type="email" name="email"
+                            class="form-control form-control-lg form-control-solid" placeholder="Enter your password"
+                            :value="old('email', $request->email)" autofocus autocomplete="username"></x-metronic.input>
                         <!--end::Input-->
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">{{ __('Password') }}</label>
+                        <x-metronic.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Password') }}</x-metronic.label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="password" name="password"
-                            required autocomplete="new-password" />
+                        <x-metronic.input type="password" name="password"
+                            class="form-control form-control-lg form-control-solid" placeholder="Enter your password"
+                            required autocomplete="new-password"></x-metronic.input>
                         <!--end::Input-->
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">{{ __('Confirm Password') }}</label>
+                        <x-metronic.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Confirm Password') }}</x-metronic.label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                        <x-metronic.input type="password" name="password_confirmation"
+                            class="form-control form-control-lg form-control-solid" placeholder="Enter your password"
+                            required autocomplete="new-password"></x-metronic.input>
                         <!--end::Input-->
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
                     <!--end::Input group-->
 
                     <!--begin::Actions-->
                     <div class="text-center">
                         <!--begin::Submit button-->
-                        <button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
-                            <span class="indicator-label"> {{ __('Confirm') }}</span>
-                        </button>
+                        <x-metronic.button type="submit" class="primary btn-lg w-100 mb-5">
+                            <span class="indicator-label"> {{ __('Continue') }}</span>
+                        </x-metronic.button>
                         <!--end::Submit button-->
                     </div>
                     <!--end::Actions-->
