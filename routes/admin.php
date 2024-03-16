@@ -71,7 +71,7 @@ Route::middleware('auth:admin', 'role:admin')->prefix('admin')->name('admin.')->
 
     Route::get('role/{roleId}/give-permission', [RoleController::class, 'givePermission'])->name('role.give-permission');
     Route::patch('role/{roleId}/give-permission', [RoleController::class, 'storePermission'])->name('role.store-permission');
-    
+
     Route::get('log', [LogController::class, 'index'])->name('log.index');
     Route::get('log/{id}', [LogController::class, 'show'])->name('log.show');
     Route::delete('log/{id}', [LogController::class, 'destroy'])->name('log.destroy');
