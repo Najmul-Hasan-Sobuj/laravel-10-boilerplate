@@ -31,6 +31,7 @@
     <link href="{{ asset('admin/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
+    @props(['title'])
     <title>{{ $title ?? config('app.name', 'MD Boilarplate') }}</title>
 </head>
 
@@ -93,10 +94,6 @@
     </div>
     <!--end::Scrolltop-->
     <!--begin::Javascript-->
-    <script>
-        var hostUrl = "assets/";
-    </script>
-
     @php
         $hostUrl = 'admin/assets/';
     @endphp
