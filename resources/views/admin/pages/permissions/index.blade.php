@@ -1,4 +1,4 @@
-<x-admin-app-layout>
+<x-admin-app-layout :title="'Permissions List'">
     <!--begin::Card-->
     <div class="card card-flush">
         <!--begin::Card header-->

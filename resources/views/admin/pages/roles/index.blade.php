@@ -1,248 +1,61 @@
-<x-admin-app-layout>
+<x-admin-app-layout :title="'Roles List'">
     <!--begin::Row-->
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-5 g-xl-9">
         <!--begin::Col-->
-        <div class="col-md-4">
-            <!--begin::Card-->
-            <div class="card card-flush h-md-100">
-                <!--begin::Card header-->
-                <div class="card-header">
-                    <!--begin::Card title-->
-                    <div class="card-title">
-                        <h2>Administrator</h2>
-                    </div>
-                    <!--end::Card title-->
-                </div>
-                <!--end::Card header-->
-                <!--begin::Card body-->
-                <div class="card-body pt-1">
-                    <!--begin::Users-->
-                    <div class="fw-bolder text-gray-600 mb-5">Total users with this role: 5</div>
-                    <!--end::Users-->
-                    <!--begin::Permissions-->
-                    <div class="d-flex flex-column text-gray-600">
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>All Admin Controls</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View and Edit Financial Summaries</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>Enabled Bulk Reports</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View and Edit Payouts</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View and Edit Disputes</div>
-                        <div class='d-flex align-items-center py-2'>
-                            <span class='bullet bg-primary me-3'></span>
-                            <em>and 7 more...</em>
+        @foreach ($roles as $role)
+            <div class="col-md-4">
+                <!--begin::Card-->
+                <div class="card card-flush h-md-100">
+                    <!--begin::Card header-->
+                    <div class="card-header">
+                        <!--begin::Card title-->
+                        <div class="card-title">
+                            <h2>{{ $role->name }}</h2>
                         </div>
+                        <!--end::Card title-->
                     </div>
-                    <!--end::Permissions-->
-                </div>
-                <!--end::Card body-->
-                <!--begin::Card footer-->
-                <div class="card-footer flex-wrap pt-0">
-                    <a href="../../demo1/dist/apps/user-management/roles/view.html" class="btn btn-light btn-active-primary my-1 me-2">View Role</a>
-                    <button type="button" class="btn btn-light btn-active-light-primary my-1" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">Edit Role</button>
-                </div>
-                <!--end::Card footer-->
-            </div>
-            <!--end::Card-->
-        </div>
-        <!--end::Col-->
-        <!--begin::Col-->
-        <div class="col-md-4">
-            <!--begin::Card-->
-            <div class="card card-flush h-md-100">
-                <!--begin::Card header-->
-                <div class="card-header">
-                    <!--begin::Card title-->
-                    <div class="card-title">
-                        <h2>Developer</h2>
-                    </div>
-                    <!--end::Card title-->
-                </div>
-                <!--end::Card header-->
-                <!--begin::Card body-->
-                <div class="card-body pt-1">
-                    <!--begin::Users-->
-                    <div class="fw-bolder text-gray-600 mb-5">Total users with this role: 14</div>
-                    <!--end::Users-->
-                    <!--begin::Permissions-->
-                    <div class="d-flex flex-column text-gray-600">
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>Some Admin Controls</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Financial Summaries only</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View and Edit API Controls</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Payouts only</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View and Edit Disputes</div>
-                        <div class='d-flex align-items-center py-2'>
-                            <span class='bullet bg-primary me-3'></span>
-                            <em>and 3 more...</em>
+                    <!--end::Card header-->
+                    <!--begin::Card body-->
+                    <div class="card-body pt-1">
+                        <!--begin::Users-->
+                        <div class="fw-bolder text-gray-600 mb-5">Total users with this role: 5</div>
+                        <!--end::Users-->
+                        <!--begin::Permissions-->
+                        <div class="d-flex flex-column text-gray-600">
+                            @foreach ($role->permissions as $permission)
+                                <div class="d-flex align-items-center py-2">
+                                    <span class="bullet bg-primary me-3"></span>{{$permission->name}}
+                                </div>
+                            @endforeach
                         </div>
+                        <!--end::Permissions-->
                     </div>
-                    <!--end::Permissions-->
+                    <!--end::Card body-->
+                    <!--begin::Card footer-->
+                    <div class="card-footer flex-wrap pt-0">
+                        <a href="../../demo1/dist/apps/user-management/roles/view.html"
+                            class="btn btn-light btn-active-primary my-1 me-2">View Role</a>
+                        <button type="button" class="btn btn-light btn-active-light-primary my-1"
+                            data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">Edit Role</button>
+                    </div>
+                    <!--end::Card footer-->
                 </div>
-                <!--end::Card body-->
-                <!--begin::Card footer-->
-                <div class="card-footer flex-wrap pt-0">
-                    <a href="../../demo1/dist/apps/user-management/roles/view.html" class="btn btn-light btn-active-primary my-1 me-2">View Role</a>
-                    <button type="button" class="btn btn-light btn-active-light-primary my-1" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">Edit Role</button>
-                </div>
-                <!--end::Card footer-->
+                <!--end::Card-->
             </div>
-            <!--end::Card-->
-        </div>
-        <!--end::Col-->
-        <!--begin::Col-->
-        <div class="col-md-4">
-            <!--begin::Card-->
-            <div class="card card-flush h-md-100">
-                <!--begin::Card header-->
-                <div class="card-header">
-                    <!--begin::Card title-->
-                    <div class="card-title">
-                        <h2>Analyst</h2>
-                    </div>
-                    <!--end::Card title-->
-                </div>
-                <!--end::Card header-->
-                <!--begin::Card body-->
-                <div class="card-body pt-1">
-                    <!--begin::Users-->
-                    <div class="fw-bolder text-gray-600 mb-5">Total users with this role: 4</div>
-                    <!--end::Users-->
-                    <!--begin::Permissions-->
-                    <div class="d-flex flex-column text-gray-600">
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>No Admin Controls</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View and Edit Financial Summaries</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>Enabled Bulk Reports</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Payouts only</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Disputes only</div>
-                        <div class='d-flex align-items-center py-2'>
-                            <span class='bullet bg-primary me-3'></span>
-                            <em>and 2 more...</em>
-                        </div>
-                    </div>
-                    <!--end::Permissions-->
-                </div>
-                <!--end::Card body-->
-                <!--begin::Card footer-->
-                <div class="card-footer flex-wrap pt-0">
-                    <a href="../../demo1/dist/apps/user-management/roles/view.html" class="btn btn-light btn-active-primary my-1 me-2">View Role</a>
-                    <button type="button" class="btn btn-light btn-active-light-primary my-1" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">Edit Role</button>
-                </div>
-                <!--end::Card footer-->
-            </div>
-            <!--end::Card-->
-        </div>
-        <!--end::Col-->
-        <!--begin::Col-->
-        <div class="col-md-4">
-            <!--begin::Card-->
-            <div class="card card-flush h-md-100">
-                <!--begin::Card header-->
-                <div class="card-header">
-                    <!--begin::Card title-->
-                    <div class="card-title">
-                        <h2>Support</h2>
-                    </div>
-                    <!--end::Card title-->
-                </div>
-                <!--end::Card header-->
-                <!--begin::Card body-->
-                <div class="card-body pt-1">
-                    <!--begin::Users-->
-                    <div class="fw-bolder text-gray-600 mb-5">Total users with this role: 23</div>
-                    <!--end::Users-->
-                    <!--begin::Permissions-->
-                    <div class="d-flex flex-column text-gray-600">
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>No Admin Controls</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Financial Summaries only</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Payouts only</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View and Edit Disputes</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>Response to Customer Feedback</div>
-                    </div>
-                    <!--end::Permissions-->
-                </div>
-                <!--end::Card body-->
-                <!--begin::Card footer-->
-                <div class="card-footer flex-wrap pt-0">
-                    <a href="../../demo1/dist/apps/user-management/roles/view.html" class="btn btn-light btn-active-primary my-1 me-2">View Role</a>
-                    <button type="button" class="btn btn-light btn-active-light-primary my-1" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">Edit Role</button>
-                </div>
-                <!--end::Card footer-->
-            </div>
-            <!--end::Card-->
-        </div>
-        <!--end::Col-->
-        <!--begin::Col-->
-        <div class="col-md-4">
-            <!--begin::Card-->
-            <div class="card card-flush h-md-100">
-                <!--begin::Card header-->
-                <div class="card-header">
-                    <!--begin::Card title-->
-                    <div class="card-title">
-                        <h2>Trial</h2>
-                    </div>
-                    <!--end::Card title-->
-                </div>
-                <!--end::Card header-->
-                <!--begin::Card body-->
-                <div class="card-body pt-1">
-                    <!--begin::Users-->
-                    <div class="fw-bolder text-gray-600 mb-5">Total users with this role: 546</div>
-                    <!--end::Users-->
-                    <!--begin::Permissions-->
-                    <div class="d-flex flex-column text-gray-600">
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>No Admin Controls</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Financial Summaries only</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Bulk Reports only</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Payouts only</div>
-                        <div class="d-flex align-items-center py-2">
-                        <span class="bullet bg-primary me-3"></span>View Disputes only</div>
-                    </div>
-                    <!--end::Permissions-->
-                </div>
-                <!--end::Card body-->
-                <!--begin::Card footer-->
-                <div class="card-footer flex-wrap pt-0">
-                    <a href="../../demo1/dist/apps/user-management/roles/view.html" class="btn btn-light btn-active-primary my-1 me-2">View Role</a>
-                    <button type="button" class="btn btn-light btn-active-light-primary my-1" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">Edit Role</button>
-                </div>
-                <!--end::Card footer-->
-            </div>
-            <!--end::Card-->
-        </div>
+        @endforeach
         <!--end::Col-->
         <!--begin::Add new card-->
-        <div class="ol-md-4">
+        <div class="col-md-4">
             <!--begin::Card-->
             <div class="card h-md-100">
                 <!--begin::Card body-->
                 <div class="card-body d-flex flex-center">
                     <!--begin::Button-->
-                    <button type="button" class="btn btn-clear d-flex flex-column flex-center" data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">
+                    <button type="button" class="btn btn-clear d-flex flex-column flex-center" data-bs-toggle="modal"
+                        data-bs-target="#kt_modal_add_role">
                         <!--begin::Illustration-->
-                        <img src="assets/media/illustrations/sketchy-1/4.png" alt="" class="mw-100 mh-150px mb-7" />
+                        <img src="assets/media/illustrations/sketchy-1/4.png" alt=""
+                            class="mw-100 mh-150px mb-7" />
                         <!--end::Illustration-->
                         <!--begin::Label-->
                         <div class="fw-bolder fs-3 text-gray-600 text-hover-primary">Add New Role</div>
@@ -273,9 +86,12 @@
                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-roles-modal-action="close">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                         <span class="svg-icon svg-icon-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                    transform="rotate(45 7.41422 6)" fill="currentColor" />
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
@@ -288,7 +104,10 @@
                     <!--begin::Form-->
                     <form id="kt_modal_add_role_form" class="form" action="#">
                         <!--begin::Scroll-->
-                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_role_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_role_header" data-kt-scroll-wrappers="#kt_modal_add_role_scroll" data-kt-scroll-offset="300px">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_role_scroll"
+                            data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+                            data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_role_header"
+                            data-kt-scroll-wrappers="#kt_modal_add_role_scroll" data-kt-scroll-offset="300px">
                             <!--begin::Input group-->
                             <div class="fv-row mb-10">
                                 <!--begin::Label-->
@@ -297,7 +116,8 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input class="form-control form-control-solid" placeholder="Enter a role name" name="role_name" />
+                                <input class="form-control form-control-solid" placeholder="Enter a role name"
+                                    name="role_name" />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -315,12 +135,17 @@
                                             <!--begin::Table row-->
                                             <tr>
                                                 <td class="text-gray-800">Administrator Access
-                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Allows a full access to the system"></i></td>
+                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                        data-bs-toggle="tooltip"
+                                                        title="Allows a full access to the system"></i>
+                                                </td>
                                                 <td>
                                                     <!--begin::Checkbox-->
                                                     <label class="form-check form-check-custom form-check-solid me-9">
-                                                        <input class="form-check-input" type="checkbox" value="" id="kt_roles_select_all" />
-                                                        <span class="form-check-label" for="kt_roles_select_all">Select all</span>
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="kt_roles_select_all" />
+                                                        <span class="form-check-label" for="kt_roles_select_all">Select
+                                                            all</span>
                                                     </label>
                                                     <!--end::Checkbox-->
                                                 </td>
@@ -336,20 +161,26 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="user_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="user_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="user_management_write" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="user_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="user_management_create" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="user_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -369,20 +200,26 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="content_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="content_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="content_management_write" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="content_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="content_management_create" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="content_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -402,20 +239,26 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="financial_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="financial_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="financial_management_write" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="financial_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="financial_management_create" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="financial_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -435,20 +278,26 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="reporting_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="reporting_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="reporting_write" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="reporting_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="reporting_create" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="reporting_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -468,20 +317,26 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="payroll_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="payroll_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="payroll_write" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="payroll_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="payroll_create" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="payroll_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -501,20 +356,26 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="disputes_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="disputes_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="disputes_management_write" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="disputes_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="disputes_management_create" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="disputes_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -534,20 +395,26 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="api_controls_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="api_controls_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="api_controls_write" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="api_controls_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="api_controls_create" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="api_controls_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -567,20 +434,26 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="database_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="database_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="database_management_write" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="database_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="database_management_create" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="database_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -600,20 +473,26 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="repository_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="repository_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="repository_management_write" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="repository_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="repository_management_create" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="repository_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -635,11 +514,12 @@
                         <!--end::Scroll-->
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
-                            <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">Discard</button>
+                            <button type="reset" class="btn btn-light me-3"
+                                data-kt-roles-modal-action="cancel">Discard</button>
                             <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
                                 <span class="indicator-label">Submit</span>
                                 <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
                         </div>
                         <!--end::Actions-->
@@ -668,9 +548,12 @@
                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-roles-modal-action="close">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                         <span class="svg-icon svg-icon-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                    transform="rotate(45 7.41422 6)" fill="currentColor" />
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
@@ -683,7 +566,11 @@
                     <!--begin::Form-->
                     <form id="kt_modal_update_role_form" class="form" action="#">
                         <!--begin::Scroll-->
-                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_role_header" data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll"
+                            data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+                            data-kt-scroll-max-height="auto"
+                            data-kt-scroll-dependencies="#kt_modal_update_role_header"
+                            data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px">
                             <!--begin::Input group-->
                             <div class="fv-row mb-10">
                                 <!--begin::Label-->
@@ -692,7 +579,8 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input class="form-control form-control-solid" placeholder="Enter a role name" name="role_name" value="Developer" />
+                                <input class="form-control form-control-solid" placeholder="Enter a role name"
+                                    name="role_name" value="Developer" />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -710,12 +598,18 @@
                                             <!--begin::Table row-->
                                             <tr>
                                                 <td class="text-gray-800">Administrator Access
-                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Allows a full access to the system"></i></td>
+                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                        data-bs-toggle="tooltip"
+                                                        title="Allows a full access to the system"></i>
+                                                </td>
                                                 <td>
                                                     <!--begin::Checkbox-->
-                                                    <label class="form-check form-check-sm form-check-custom form-check-solid me-9">
-                                                        <input class="form-check-input" type="checkbox" value="" id="kt_roles_select_all" />
-                                                        <span class="form-check-label" for="kt_roles_select_all">Select all</span>
+                                                    <label
+                                                        class="form-check form-check-sm form-check-custom form-check-solid me-9">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="kt_roles_select_all" />
+                                                        <span class="form-check-label"
+                                                            for="kt_roles_select_all">Select all</span>
                                                     </label>
                                                     <!--end::Checkbox-->
                                                 </td>
@@ -731,20 +625,25 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="user_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="user_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="user_management_write" />
+                                                        <label
+                                                            class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="user_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
                                                         <label class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="user_management_create" />
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="user_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -764,20 +663,25 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="content_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="content_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="content_management_write" />
+                                                        <label
+                                                            class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="content_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
                                                         <label class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="content_management_create" />
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="content_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -797,20 +701,25 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="financial_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="financial_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="financial_management_write" />
+                                                        <label
+                                                            class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="financial_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
                                                         <label class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="financial_management_create" />
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="financial_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -830,20 +739,25 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="reporting_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="reporting_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="reporting_write" />
+                                                        <label
+                                                            class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="reporting_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
                                                         <label class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="reporting_create" />
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="reporting_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -863,20 +777,25 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="payroll_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="payroll_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="payroll_write" />
+                                                        <label
+                                                            class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="payroll_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
                                                         <label class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="payroll_create" />
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="payroll_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -896,20 +815,25 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="disputes_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="disputes_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="disputes_management_write" />
+                                                        <label
+                                                            class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="disputes_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
                                                         <label class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="disputes_management_create" />
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="disputes_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -929,20 +853,25 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="api_controls_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="api_controls_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="api_controls_write" />
+                                                        <label
+                                                            class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="api_controls_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
                                                         <label class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="api_controls_create" />
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="api_controls_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -962,20 +891,25 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="database_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="database_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="database_management_write" />
+                                                        <label
+                                                            class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="database_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
                                                         <label class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="database_management_create" />
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="database_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -995,20 +929,25 @@
                                                     <!--begin::Wrapper-->
                                                     <div class="d-flex">
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="repository_management_read" />
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="repository_management_read" />
                                                             <span class="form-check-label">Read</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
-                                                        <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                            <input class="form-check-input" type="checkbox" value="" name="repository_management_write" />
+                                                        <label
+                                                            class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="repository_management_write" />
                                                             <span class="form-check-label">Write</span>
                                                         </label>
                                                         <!--end::Checkbox-->
                                                         <!--begin::Checkbox-->
                                                         <label class="form-check form-check-custom form-check-solid">
-                                                            <input class="form-check-input" type="checkbox" value="" name="repository_management_create" />
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" name="repository_management_create" />
                                                             <span class="form-check-label">Create</span>
                                                         </label>
                                                         <!--end::Checkbox-->
@@ -1030,11 +969,12 @@
                         <!--end::Scroll-->
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
-                            <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">Discard</button>
+                            <button type="reset" class="btn btn-light me-3"
+                                data-kt-roles-modal-action="cancel">Discard</button>
                             <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
                                 <span class="indicator-label">Submit</span>
                                 <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
                         </div>
                         <!--end::Actions-->
