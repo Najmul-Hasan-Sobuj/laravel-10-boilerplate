@@ -1,4 +1,5 @@
   <!--begin::Toolbar-->
+  @props(['title'])
   <div class="toolbar" id="kt_toolbar">
       <!--begin::Container-->
       <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -8,12 +9,10 @@
               class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 
 
-              {{-- <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Users List</h1> --}}
-              <!--end::Title-->
-              <!--begin::Separator-->
-              {{-- <span class="h-20px border-gray-300 border-start mx-4"></span> --}}
-              <!--end::Separator-->
-              <!--begin::Breadcrumb-->
+              @if ($title ?? false)
+                <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">{{ $title }}</h1>
+                <span class="h-20px border-gray-300 border-start mx-4"></span>
+              @endif
 
               <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-5 my-1">
                   <!--begin::Item-->
@@ -21,10 +20,6 @@
                       <li class="breadcrumb-item">
                           <a href="{{ $breadcrumb['url'] }}" class= text-hover-primary">{{ $breadcrumb['name'] }}</a>
                       </li>
-                      <!--end::Item-->
-                      <!--begin::Item-->
-
-
                       @if ($loop->last)
                       @else
                           <li class="breadcrumb-item">

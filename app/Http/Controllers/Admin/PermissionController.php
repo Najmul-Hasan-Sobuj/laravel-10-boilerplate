@@ -29,7 +29,7 @@ class PermissionController extends Controller
      */
     public function store(PermissionRequest $request)
     {
-        Permission::create(['name' => $request->name]);
+        Permission::create(['name' => $request->name,'group_name' => $request->group_name]);
 
         return redirect()->back()->with('success', 'Permission created successfully');
     }
@@ -55,7 +55,7 @@ class PermissionController extends Controller
      */
     public function update(PermissionRequest $request, string $id)
     {
-        Permission::findOrFail($id)->update(['name' => $request->name]);
+        Permission::findOrFail($id)->update(['name' => $request->name,'group_name' => $request->group_name]);
 
         return redirect()->back()->with('success', 'Permission updated successfully');
     }

@@ -1,4 +1,4 @@
-<x-admin-app-layout>
+<x-admin-app-layout :title="'Permissions List'">
     <!--begin::Card-->
     <div class="card card-flush">
         <!--begin::Card header-->
@@ -157,18 +157,27 @@
                         @csrf
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
-                            <!--begin::Label-->
-                            <label class="fs-6 fw-bold form-label mb-2">
-                                <span class="required">Permission Name</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                            <x-metronic.label for="goup-name"
+                                class="col-form-label fw-bold fs-6">{{ __('Group Name') }}
+                            </x-metronic.label>
+
+                            <x-metronic.input id="goup-name" type="text" name="group_name" :value="old('group_name')"
+                                placeholder="Enter the permission Group name"></x-metronic.input>
+                        </div>
+                        <div class="fv-row mb-7">
+                            <x-metronic.label for="permission-add-name"
+                                class="col-form-label required fw-bold fs-6">{{ __('Permission Name') }} <i
+                                    class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
                                     data-bs-trigger="hover" data-bs-html="true"
-                                    data-bs-content="Permission names is required to be unique."></i>
-                            </label>
-                            <!--end::Label-->
+                                    data-bs-content="Permission name is required to be unique."></i>
+                            </x-metronic.label>
+
+                            <x-metronic.input id="permission-add-name" type="text" name="name" :value="old('name')"
+                                placeholder="Enter the permission name" required></x-metronic.input>
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="Enter a permission name"
+                            {{-- <input class="form-control form-control-solid" placeholder="Enter a permission name"
                                 name="name" value="{{ old('name') }}" />
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
                             <!--end::Input-->
                         </div>
 
@@ -176,11 +185,9 @@
                         <div class="text-center pt-15">
                             <button type="reset" class="btn btn-light me-3"
                                 data-kt-permissions-modal-action="cancel">Discard</button>
-                            <button type="submit" class="btn btn-primary" data-kt-permissions-modal-action="submit">
-                                <span class="indicator-label">Submit</span>
-                                <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
+                            <x-metronic.button type="submit" class="primary">
+                                {{ __('Submit') }}
+                            </x-metronic.button>
                         </div>
                         <!--end::Actions-->
                     </form>
@@ -249,7 +256,7 @@
                             <div class="d-flex flex-stack flex-grow-1">
                                 <!--begin::Content-->
                                 <div class="fw-bold">
-                                    <div class="fs-6 text-gray-700">
+                                    <div class="fs-8 text-gray-700">
                                         <strong class="me-1">Warning!</strong>By editing the permission name, you
                                         might
                                         break the system permissions functionality. Please ensure you're absolutely
@@ -261,39 +268,37 @@
                             </div>
                             <!--end::Wrapper-->
                         </div>
-                        <!--end::Notice-->
-                        <!--end::Notice-->
-                        <!--begin::Form-->
-                        <form id="kt_modal_update_permission_form" class="form" action="#">
+                        <form class="form" action="{{ route('admin.permission.update', $permission->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="fs-6 fw-bold form-label mb-2">
-                                    <span class="required">Permission Name</span>
-                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
-                                        data-bs-trigger="hover" data-bs-html="true"
-                                        data-bs-content="Permission names is required to be unique."></i>
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input class="form-control form-control-solid" placeholder="Enter a permission name"
-                                    name="name" value="{{ old('name', $permission->name) }}" />
-                                @error('name')
-                                    <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
-                                @enderror
-                                <!--end::Input-->
+                                <x-metronic.label for="goup-name"
+                                    class="col-form-label fw-bold fs-6">{{ __('Group Name') }}
+                                </x-metronic.label>
+
+                                <x-metronic.input id="goup-name" type="text" name="group_name" :value="old('group_name', $permission->group_name)"
+                                    placeholder="Enter the permission Group name"></x-metronic.input>
                             </div>
-                            <!--end::Input group-->
+                            <div class="fv-row mb-7">
+                                <x-metronic.label for="permission-update-name"
+                                    class="col-form-label required fw-bold fs-6">{{ __('Permission Name') }} <i
+                                        class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                        data-bs-trigger="hover" data-bs-html="true"
+                                        data-bs-content="Permission name is required to be unique."></i>
+                                </x-metronic.label>
+
+                                <x-metronic.input id="permission-update-name" type="text" name="name" :value="old('name', $permission->name)"
+                                    placeholder="Enter the permission name"></x-metronic.input>
+                            </div>
+
                             <!--begin::Actions-->
                             <div class="text-center pt-15">
                                 <button type="reset" class="btn btn-light me-3"
                                     data-kt-permissions-modal-action="cancel">Discard</button>
-                                <button type="submit" class="btn btn-primary"
-                                    data-kt-permissions-modal-action="submit">
-                                    <span class="indicator-label">Submit</span>
-                                    <span class="indicator-progress">Please wait...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                </button>
+                                <x-metronic.button type="submit" class="primary">
+                                    {{ __('Save Changes') }}
+                                </x-metronic.button>
                             </div>
                             <!--end::Actions-->
                         </form>
