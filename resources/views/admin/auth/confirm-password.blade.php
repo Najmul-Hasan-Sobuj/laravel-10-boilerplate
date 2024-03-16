@@ -26,23 +26,23 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">{{ __('Password') }}</label>
+                        <x-metronic.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Password') }}</x-metronic.label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="password" name="password"
-                            required autocomplete="current-password" />
+                        <x-metronic.input type="password" name="password" class="form-control form-control-lg"
+                            placeholder="Enter your password" required
+                            autocomplete="current-password"></x-metronic.input>
                         <!--end::Input-->
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     <!--end::Input group-->
 
                     <!--begin::Actions-->
                     <div class="text-center">
                         <!--begin::Submit button-->
-                        <button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
+                        <x-metronic.button type="submit" class="primary w-100 mb-5">
                             <span class="indicator-label"> {{ __('Confirm') }}</span>
-                        </button>
+                        </x-metronic.button>
                         <!--end::Submit button-->
                     </div>
                     <!--end::Actions-->
