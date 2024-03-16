@@ -64,7 +64,7 @@ $(document).on('click', '.delete-account', async function (e) {
     var deleteAccountUrl = $(this).attr('href');
     var checkPasswordUrl = $(this).data('check-password-url');
     const { value: password } = await Swal.fire({
-        title: "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
+        title: "Confirm Password",
         input: "password",
         // inputLabel: "Password",
         inputPlaceholder: "Enter your password",
