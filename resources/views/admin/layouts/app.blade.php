@@ -96,35 +96,39 @@
     <script>
         var hostUrl = "assets/";
     </script>
+
+    @php
+        $hostUrl = 'admin/assets/';
+    @endphp
     <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="{{ asset('admin/assets/plugins/global/plugins.bundle.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Page Vendors Javascript(used by this page)-->
-    <script src="{{ asset('admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
-    <script src="{{ asset('admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="{{ asset('admin/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
-    <script src="{{ asset('admin/assets/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'plugins/global/plugins.bundle.js') }}"></script>
 
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('admin/assets/js/custom/account/settings/signin-methods.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/account/settings/profile-details.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/account/settings/deactivate-account.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/apps/ecommerce/catalog/save-product.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/widgets.bundle.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/apps/chat/chat.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/utilities/modals/create-app.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/utilities/modals/offer-a-deal/type.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/utilities/modals/offer-a-deal/details.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/utilities/modals/offer-a-deal/finance.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/utilities/modals/offer-a-deal/complete.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/utilities/modals/offer-a-deal/main.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/utilities/modals/two-factor-authentication.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/custom/utilities/modals/users-search.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/account/settings/signin-methods.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/account/settings/profile-details.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/account/settings/deactivate-account.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/apps/ecommerce/catalog/save-product.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/widgets.bundle.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/widgets.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/apps/chat/chat.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/upgrade-plan.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/create-app.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/offer-a-deal/type.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/offer-a-deal/details.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/offer-a-deal/finance.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/offer-a-deal/complete.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/offer-a-deal/main.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/two-factor-authentication.js') }}"></script>
+    <script src="{{ asset($hostUrl . 'js/custom/utilities/modals/users-search.js') }}"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script src="{{ asset('admin/js/custom.js') }}"></script>
