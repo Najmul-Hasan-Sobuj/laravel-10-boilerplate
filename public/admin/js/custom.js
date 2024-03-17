@@ -147,65 +147,232 @@ $(document).on('click', '.delete-account', async function (e) {
 
 // --------------------------------
 // Modal Code
+// "use strict";
+
+// var metronicModal = function () {
+//     var t = $(".metronic_modal"),
+//         n = new bootstrap.Modal(t);
+
+//     return {
+//         init: function () {
+//             $(document).ready(function () {
+//                 // Debugging statement
+//                 console.log('Modal element:', t);
+
+//                 // Check if the modal element is found
+//                 if (t.length === 0) {
+//                     console.error('Modal element not found.');
+//                     return;
+//                 }
+
+
+
+//                 t.find('[data-kt-permissions-modal-action="close"]').on("click", function (event) {
+//                     event.preventDefault();
+//                     Swal.fire({
+//                         text: "Are you sure you would like to close?",
+//                         icon: "warning",
+//                         showCancelButton: true,
+//                         buttonsStyling: false,
+//                         confirmButtonText: "Yes, close it!",
+//                         cancelButtonText: "No, return",
+//                         customClass: {
+//                             confirmButton: "btn btn-primary",
+//                             cancelButton: "btn btn-active-light"
+//                         }
+//                     }).then(function (result) {
+//                         if (result.isConfirmed) {
+//                             n.hide();
+//                         } else if (result.dismiss === Swal.DismissReason.cancel) {
+//                             Swal.fire({
+//                                 text: "Your form has not been cancelled!",
+//                                 icon: "error",
+//                                 buttonsStyling: false,
+//                                 confirmButtonText: "Ok, got it!",
+//                                 customClass: {
+//                                     confirmButton: "btn btn-primary"
+//                                 }
+//                             });
+//                         }
+//                     });
+//                 });
+//             });
+//         }
+//     }
+// }();
+
+// // Initialize the metronicModal
+// metronicModal.init();
+// "use strict";
+
+// // Class definition
+// var metronicModal = function () {
+//     // Shared variables
+//     const element = document.querySelector(".metronic_modal");
+//     // const form = element.querySelector('#kt_modal_add_permission_form');
+//     const modal = new bootstrap.Modal(element);
+
+//     // Init add schedule modal
+//     var initModal = () => {
+
+
+//         // Close button handler
+//         const closeButton = element.querySelector('[data-kt-permissions-modal-action="close"]');
+//         closeButton.addEventListener('click', e => {
+//             e.preventDefault();
+
+//             Swal.fire({
+//                 text: "Are you sure you would like to close?",
+//                 icon: "warning",
+//                 showCancelButton: true,
+//                 buttonsStyling: false,
+//                 confirmButtonText: "Yes, close it!",
+//                 cancelButtonText: "No, return",
+//                 customClass: {
+//                     confirmButton: "btn btn-primary",
+//                     cancelButton: "btn btn-active-light"
+//                 }
+//             }).then(function (result) {
+//                 if (result.value) {
+//                     modal.hide(); // Hide modal
+//                 }
+//             });
+//         });
+
+//         // Cancel button handler
+//         const cancelButton = element.querySelector('[data-kt-permissions-modal-action="cancel"]');
+//         cancelButton.addEventListener('click', e => {
+//             e.preventDefault();
+
+//             Swal.fire({
+//                 text: "Are you sure you would like to cancel?",
+//                 icon: "warning",
+//                 showCancelButton: true,
+//                 buttonsStyling: false,
+//                 confirmButtonText: "Yes, cancel it!",
+//                 cancelButtonText: "No, return",
+//                 customClass: {
+//                     confirmButton: "btn btn-primary",
+//                     cancelButton: "btn btn-active-light"
+//                 }
+//             }).then(function (result) {
+//                 if (result.value) {
+//                     modal.hide(); // Hide modal
+//                 } else if (result.dismiss === 'cancel') {
+//                     Swal.fire({
+//                         text: "Your form has not been cancelled!.",
+//                         icon: "error",
+//                         buttonsStyling: false,
+//                         confirmButtonText: "Ok, got it!",
+//                         customClass: {
+//                             confirmButton: "btn btn-primary",
+//                         }
+//                     });
+//                 }
+//             });
+//         });
+
+
+//     }
+
+//     return {
+//         // Public functions
+//         init: function () {
+//             initModal();
+//         }
+//     };
+// }();
+
+// // On document ready
+// KTUtil.onDOMContentLoaded(function () {
+//     metronicModal.init();
+// });
 "use strict";
 
+// Class definition
 var metronicModal = function () {
-    var t = $(".metronic_modal"),
-        e = t.find("#metronic_modal_form"),
-        n = new bootstrap.Modal(t);
+    // Shared variables
+    const modals = document.querySelectorAll('.metronic_modal');
+
+    // Init modals
+    var initModals = () => {
+        modals.forEach(modalElement => {
+            const modal = new bootstrap.Modal(modalElement);
+
+            const swalConfirmClose = () => {
+                Swal.fire({
+                    text: "Are you sure you would like to close?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonText: "Yes, close it!",
+                    cancelButtonText: "No, return",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: "btn btn-active-light"
+                    }
+                }).then(function (result) {
+                    if (result.value) {
+                        modal.hide(); // Hide modal
+                    }
+                });
+            };
+
+            const swalConfirmCancel = (form) => {
+                Swal.fire({
+                    text: "Are you sure you would like to cancel?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonText: "Yes, cancel it!",
+                    cancelButtonText: "No, return",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: "btn btn-active-light"
+                    }
+                }).then(function (result) {
+                    if (result.value) {
+                        modal.hide(); // Hide modal
+                    } else if (result.dismiss === 'cancel') {
+                        Swal.fire({
+                            text: "Your form has not been cancelled!.",
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn btn-primary",
+                            }
+                        });
+                    }
+                });
+            };
+
+            // Close button handler
+            const closeButton = modalElement.querySelector('[data-kt-permissions-modal-action="close"]');
+            closeButton.addEventListener('click', e => {
+                e.preventDefault();
+                swalConfirmClose();
+            });
+
+            // Cancel button handler
+            const cancelButton = modalElement.querySelector('[data-kt-permissions-modal-action="cancel"]');
+            cancelButton.addEventListener('click', e => {
+                e.preventDefault();
+                const form = modalElement.querySelector('form');
+                swalConfirmCancel(form);
+            });
+        });
+    };
 
     return {
+        // Public functions
         init: function () {
-            $(document).ready(function () {
-                // Debugging statement
-                console.log('Modal element:', t);
-
-                // Check if the modal element is found
-                if (t.length === 0) {
-                    console.error('Modal element not found.');
-                    return;
-                }
-
-                // Check if the form element is found
-                if (e.length === 0) {
-                    console.error('Form element not found within the modal.');
-                    return;
-                }
-
-                t.find('[data-kt-permissions-modal-action="close"]').on("click", function (event) {
-                    event.preventDefault();
-                    Swal.fire({
-                        text: "Are you sure you would like to close?",
-                        icon: "warning",
-                        showCancelButton: true,
-                        buttonsStyling: false,
-                        confirmButtonText: "Yes, close it!",
-                        cancelButtonText: "No, return",
-                        customClass: {
-                            confirmButton: "btn btn-primary",
-                            cancelButton: "btn btn-active-light"
-                        }
-                    }).then(function (result) {
-                        if (result.isConfirmed) {
-                            e[0].reset();
-                            n.hide();
-                        } else if (result.dismiss === Swal.DismissReason.cancel) {
-                            Swal.fire({
-                                text: "Your form has not been cancelled!",
-                                icon: "error",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn btn-primary"
-                                }
-                            });
-                        }
-                    });
-                });
-            });
+            initModals();
         }
-    }
+    };
 }();
 
-// Initialize the metronicModal
-metronicModal.init();
+// On document ready
+KTUtil.onDOMContentLoaded(function () {
+    metronicModal.init();
+});
