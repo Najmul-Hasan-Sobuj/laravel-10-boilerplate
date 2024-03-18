@@ -22,6 +22,7 @@ class PermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'group_name' => 'nullable|string|max:255',
             'name' => 'required|string|max:255|unique:permissions,name',
         ];
     }
@@ -49,6 +50,7 @@ class PermissionRequest extends FormRequest
     public function attributes(): array
     {
         return [
+            'group_name' => 'permission Group name',
             'name' => 'permission name',
         ];
     }

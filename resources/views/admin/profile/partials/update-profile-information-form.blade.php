@@ -21,7 +21,7 @@
             <!--begin::Input group-->
             <div class="row fv-row">
                 <div class="mb-10 col-lg-6">
-                    <!--begin::Label-->
+                    {{-- <!--begin::Label-->
                     <label class="required form-label">{{ __('Name') }}</label>
                     <!--end::Label-->
                     <!--begin::Input-->
@@ -30,21 +30,23 @@
                     <!--end::Input-->
                     <!--begin::Error-->
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                    <!--end::Error-->
+                    <!--end::Error--> --}}
+
+                    <x-metronic.label for="name"
+                        class="form-label">{{ __('Name') }}</x-metronic.label>
+                    <x-metronic.input id="name" type="text" name="name" :value="old('name', $user->name)"
+                        placeholder="Enter Your name"></x-metronic.input>
                 </div>
                 <!--end::Input group-->
                 <!--begin::Input group-->
                 <div class="mb-10 col-lg-6">
-                    <!--begin::Label-->
-                    <label class="required form-label">{{ __('Email') }}</label>
+                    <x-metronic.label class="form-label">{{ __('Email') }}</x-metronic.label>
                     <!--end::Label-->
                     <!--begin::Input-->
-                    <input type="email" name="email" class="form-control mb-2" placeholder="Email"
-                        value="{{ old('email', $user->email) }}" />
-                    <!--end::Input-->
-                    <!--begin::Error-->
-                    <x-input-error class="mt-2" :messages="$errors->get('email')" />
-                    <!--end::Error-->
+                    <x-metronic.input type="email" name="email"
+                        class="form-control form-control-lg form-control-solid" placeholder="Enter your email address"
+                        value="{{ old('email',$user->email) }}" autocomplete="off"></x-metronic.input>
+
                     @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                         <div>
                             <p class="small mt-2 text-secondary">
@@ -72,7 +74,9 @@
         <!--end::Card body-->
         <!--begin::Card footer-->
         <div class="card-footer d-flex justify-content-end py-4 px-9">
-            <button type="submit" class="btn btn-primary fw-bold rounded-1">{{ __('Submit') }}</button>
+            <x-metronic.button type="submit" class="primary">
+                {{ __('Submit') }}
+            </x-metronic.button>
         </div>
         <!--end::Card footer-->
     </form>

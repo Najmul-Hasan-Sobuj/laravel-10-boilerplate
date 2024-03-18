@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class CategoryRequest extends FormRequest
 {
@@ -24,19 +23,16 @@ class CategoryRequest extends FormRequest
     {
         switch ($this->method()) {
             case 'POST':
-                return [
-                    'name' => 'required|max:255',
-                    'parent_id' => 'nullable|exists:categories,id',
-                    'status' => 'required|boolean',
-                ];
             case 'PUT':
             case 'PATCH':
                 return [
-                    'name' => 'required|max:255',
+                    'name' => 'required|max:5',
                     'parent_id' => 'nullable|exists:categories,id',
                     'status' => 'required|boolean',
                 ];
             case 'DELETE':
+                return [];
+            default:
                 return [];
         }
     }

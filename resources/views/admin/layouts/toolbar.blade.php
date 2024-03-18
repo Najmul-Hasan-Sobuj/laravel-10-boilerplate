@@ -13,28 +13,29 @@
             @endif
 
 
-            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-5 my-1">
-                <!--begin::Item-->
-                @foreach ($breadcrumbs as $breadcrumb)
-                <li class="breadcrumb-item">
-                    <a href="{{ $breadcrumb['url'] }}" class="text-hover-primary">{{ $breadcrumb['name'] }}</a>
-                </li>
-                <!--end::Item-->
-                <!--begin::Item-->
+              <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-5 my-1">
+                  <!--begin::Item-->
+                  @foreach ($breadcrumbs as $breadcrumb)
+                      <li class="breadcrumb-item">
+                          <a href="{{ $breadcrumb['url'] }}" class= text-hover-primary">{{ $breadcrumb['name'] }}</a>
+                      </li>
+                      <!--end::Item-->
+                      <!--begin::Item-->
 
-                @if ($loop->last)
-                @else
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                </li>
-                @endif
-                @endforeach
-            </ul>
-            <!--end::Breadcrumb-->
-            <!--end::Title-->
-        </div>
-        <!--end::Page title-->
-    </div>
-    <!--end::Container-->
-</div>
-<!--end::Toolbar-->
+
+                      @if ($loop->last)
+                      @else
+                          <li class="breadcrumb-item">
+                              <span class="bullet bg-gray-300 w-5px h-2px"></span>
+                          </li>
+                      @endif
+                  @endforeach
+              </ul>
+              <!--end::Breadcrumb-->
+              <!--end::Title-->
+          </div>
+          <!--end::Page title-->
+      </div>
+      <!--end::Container-->
+  </div>
+  <!--end::Toolbar-->

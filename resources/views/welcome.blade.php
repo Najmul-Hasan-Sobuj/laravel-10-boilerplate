@@ -49,26 +49,6 @@
                 @endauth
             @endif
         </div>
-        <div class="border border-white p-2">
-            @if (Route::has('vendor.login'))
-                @auth('vendor')
-                    <a href="{{ url('/vendor/dashboard') }}"
-                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Vendor
-                        Dashboard</a>
-                @else
-                    <a href="{{ route('vendor.login') }}"
-                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Vendor
-                        Log
-                        in</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('vendor.register') }}"
-                            class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Vendor
-                            Register</a>
-                    @endif
-                @endauth
-            @endif
-        </div>
     </div>
 </body>
 

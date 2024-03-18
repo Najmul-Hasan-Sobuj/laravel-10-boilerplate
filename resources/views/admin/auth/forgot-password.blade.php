@@ -28,23 +28,23 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">Email</label>
+                        <x-metronic.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
                         <!--end::Label-->
-                        <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email"
-                            value="{{ old('email') }}" autocomplete="off" />
+                        <x-metronic.input type="email" name="email"
+                            class="form-control form-control-lg form-control-solid"
+                            placeholder="Enter your email address" value="{{ old('email') }}"
+                            autocomplete="off"></x-metronic.input>
                         <!--end::Input-->
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-
                     </div>
                     <!--end::Input group-->
 
                     <!--begin::Actions-->
                     <div class="text-center">
                         <!--begin::Submit button-->
-                        <button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
+                        <x-metronic.button type="submit" class="primary btn-lg w-100 mb-5">
                             <span class="indicator-label"> {{ __('Email Password Reset Link') }}</span>
-                        </button>
+                        </x-metronic.button>
                         <!--end::Submit button-->
                     </div>
                     <!--end::Actions-->

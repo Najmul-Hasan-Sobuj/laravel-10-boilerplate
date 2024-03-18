@@ -32,7 +32,9 @@
                     @csrf
 
                     <div class="text-center mb-10">
-                        <button type="submit" class="btn btn-lg btn-primary fw-bolder">{{ __('Log Out') }}</button>
+                        <x-metronic.button type="submit" class="primary btn-lg fw-bolder">
+                            {{ __('Log Out') }}
+                        </x-metronic.button>
                     </div>
                 </form>
 

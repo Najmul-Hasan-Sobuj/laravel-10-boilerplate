@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Users List - ' . config('app.name')">
+<x-admin-app-layout :title="'Users List'">
     <!--begin::Card-->
     <div class="card">
         <!--begin::Card header-->

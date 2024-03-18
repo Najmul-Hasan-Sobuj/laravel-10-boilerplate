@@ -28,14 +28,15 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">Email</label>
+                        <x-metronic.label
+                            class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</x-metronic.label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="email" name="email"
-                            value="{{ old('email') }}" autocomplete="off" />
+                        <x-metronic.input type="email" name="email"
+                            class="form-control form-control-lg form-control-solid"
+                            placeholder="Enter your email address" value="{{ old('email') }}"
+                            autocomplete="off"></x-metronic.input>
                         <!--end::Input-->
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -43,7 +44,8 @@
                         <!--begin::Wrapper-->
                         <div class="d-flex flex-stack mb-2">
                             <!--begin::Label-->
-                            <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
+                            <x-metronic.label
+                                class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</x-metronic.label>
                             <!--end::Label-->
                             <!--begin::Link-->
                             @if (Route::has('admin.password.request'))
@@ -54,11 +56,10 @@
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="password" name="password"
-                            autocomplete="off" />
+                        <x-metronic.input type="password" name="password"
+                            class="form-control form-control-lg form-control-solid" placeholder="Enter your password"
+                            autocomplete="off"></x-metronic.input>
                         <!--end::Input-->
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -68,7 +69,8 @@
                             <div class="mb-3">
                                 <div class="form-check">
                                     <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
-                                    <label class="form-check-label" for="remember_me">{{ __('Remember me') }}</label>
+                                    <x-metronic.label for="remember_me"
+                                        class="form-check-label">{{ __('Remember me') }}</x-metronic.label>
                                 </div>
                             </div>
                         </div>
@@ -78,9 +80,9 @@
                     <!--begin::Actions-->
                     <div class="text-center">
                         <!--begin::Submit button-->
-                        <button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
-                            <span class="indicator-label">Continue</span>
-                        </button>
+                        <x-metronic.button type="submit" class="primary btn-lg w-100 mb-5">
+                            <span class="indicator-label"> {{ __('Continue') }}</span>
+                        </x-metronic.button>
                         <!--end::Submit button-->
                         <!--begin::Separator-->
                         <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
