@@ -21,9 +21,10 @@ class PermissionRequest extends FormRequest
      */
     public function rules(): array
     {
+        $permission = $this->route('permission');
         return [
             'group_name' => 'nullable|string|max:255',
-            'name' => 'required|string|max:255|unique:permissions,name',
+            'name' => 'required|string|max:255|unique:permissions,name,' . $permission,
         ];
     }
 

@@ -15,6 +15,16 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $data = [
+            'permissionsByGroup' => Permission::select('group_name')
+            ->distinct()
+            ->orderBy('group_name')
+            ->get(),
+
+        'permissions' => Permission::orderBy('group_name')
+            ->orderBy('name')
+            ->get(),
+        ]
         return view('admin.pages.roles.index', ['roles' => Role::get()]);
     }
 

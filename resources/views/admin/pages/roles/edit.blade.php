@@ -42,7 +42,7 @@
                                         <!--end::Checkbox-->
                                     </td>
                                 </tr>
-                                @foreach ($collection as $item)
+                                @foreach ($permissions as $permission)
                                     <tr>
                                         <!--begin::Label-->
                                         <td class="text-gray-800">User Management</td>
@@ -60,7 +60,8 @@
                                                 </label>
                                                 <!--end::Checkbox-->
                                                 <!--begin::Checkbox-->
-                                                <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
+                                                <label
+                                                    class="form-check form-check-custom form-check-solid me-5 me-lg-20">
                                                     <input class="form-check-input" type="checkbox" value=""
                                                         name="user_management_write" />
                                                     <span class="form-check-label">Write</span>
@@ -93,11 +94,10 @@
             <!--end::Scroll-->
             <!--begin::Actions-->
             <div class="text-center pt-15">
-                <button type="reset" class="btn btn-light me-3"
-                    data-kt-roles-modal-action="cancel">Discard</button>
-                    <x-metronic.button type="submit" class="primary">
-                        {{ __('Save Changes') }}
-                    </x-metronic.button>
+                <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">Discard</button>
+                <x-metronic.button type="submit" class="primary">
+                    {{ __('Save Changes') }}
+                </x-metronic.button>
             </div>
             <!--end::Actions-->
         </form>
