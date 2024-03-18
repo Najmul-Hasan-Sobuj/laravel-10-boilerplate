@@ -35,7 +35,7 @@
                 <!--end::Card body-->
                 <!--begin::Card footer-->
                 <div class="card-footer flex-wrap pt-0">
-                    <a href="../../demo1/dist/apps/user-management/roles/view.html" class="btn btn-light btn-active-primary my-1 me-2">View Role</a>
+                    {{-- <a href="../../demo1/dist/apps/user-management/roles/view.html" class="btn btn-light btn-active-primary my-1 me-2">View Role</a> --}}
                     <a href="{{ route('admin.role.edit', $role->id) }}" class="btn btn-light btn-active-light-primary my-1">Edit Role</a>
                 </div>
                 <!--end::Card footer-->

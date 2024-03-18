@@ -1,17 +1,17 @@
-<x-admin-app-layout :title="'Role Edit '">
+<x-admin-app-layout :title="'Role Edit'">
     <div class="card card-flush">
         <!--begin::Form-->
-        <form class="form" action="#">
+        <form class="form" action="{{ route('admin.role.update',$role->id) }}" method="POST">
+            @csrf
+            @method('PATCH')
             <!--begin::Scroll-->
-            <div class="card-body d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll"
-                data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto"
-                data-kt-scroll-dependencies="#kt_modal_update_role_header"
-                data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px">
+            <div class="card-body d-flex flex-column scroll-y me-n7 pe-7"
+                data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
                 <!--begin::Input group-->
                 <div class="fv-row mb-10">
                     <x-metronic.label for="role-name"
                         class="col-form-label required fw-bold fs-6">{{ __('Role Name') }}</x-metronic.label>
-                    <x-metronic.input id="role-name" type="text" name="name" :value="old('name', $role->name)"
+                    <x-metronic.input id="role-name" type="text" name="name" :value="old('name',$role->name)"
                         placeholder="Enter the Role name"></x-metronic.input>
                 </div>
                 <!--end::Input group-->
@@ -35,45 +35,32 @@
                                     <td>
                                         <!--begin::Checkbox-->
                                         <label class="form-check form-check-sm form-check-custom form-check-solid me-9">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input metronic_select_all" type="checkbox" value=""
                                                 id="kt_roles_select_all" />
                                             <span class="form-check-label" for="kt_roles_select_all">Select all</span>
                                         </label>
                                         <!--end::Checkbox-->
                                     </td>
                                 </tr>
-                                @foreach ($permissions as $permission)
+                                @foreach ($permissionsByGroups as $group)
                                     <tr>
                                         <!--begin::Label-->
-                                        <td class="text-gray-800">User Management</td>
+                                        <td class="text-gray-800">{{$group->group_name}}</td>
                                         <!--end::Label-->
                                         <!--begin::Input group-->
                                         <td>
                                             <!--begin::Wrapper-->
                                             <div class="d-flex">
-                                                <!--begin::Checkbox-->
-                                                <label
-                                                    class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        name="user_management_read" />
-                                                    <span class="form-check-label">Read</span>
-                                                </label>
-                                                <!--end::Checkbox-->
-                                                <!--begin::Checkbox-->
-                                                <label
-                                                    class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        name="user_management_write" />
-                                                    <span class="form-check-label">Write</span>
-                                                </label>
-                                                <!--end::Checkbox-->
-                                                <!--begin::Checkbox-->
-                                                <label class="form-check form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        name="user_management_create" />
-                                                    <span class="form-check-label">Create</span>
-                                                </label>
-                                                <!--end::Checkbox-->
+                                                @foreach ($permissions->where('group_name', $group->group_name) as $permission)
+                                                    <!--begin::Checkbox-->
+                                                    <label
+                                                        class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                        <input class="form-check-input" type="checkbox" value="{{ $permission->name }}"
+                                                            name="permissions[]" {{ $role->permissions->contains($permission) ? 'checked' : '' }}/>
+                                                        <span class="form-check-label">{{ $permission->name }}</span>
+                                                    </label>
+                                                    <!--end::Checkbox-->
+                                                @endforeach
                                             </div>
                                             <!--end::Wrapper-->
                                         </td>
@@ -93,11 +80,12 @@
             </div>
             <!--end::Scroll-->
             <!--begin::Actions-->
-            <div class="text-center pt-15">
-                <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">Discard</button>
-                <x-metronic.button type="submit" class="primary">
-                    {{ __('Save Changes') }}
-                </x-metronic.button>
+            <div class="card-footer text-center">
+                <button type="reset" class="btn btn-light me-3"
+                    data-kt-roles-modal-action="cancel">Discard</button>
+                    <x-metronic.button type="submit" class="primary">
+                        {{ __('Save Changes') }}
+                    </x-metronic.button>
             </div>
             <!--end::Actions-->
         </form>

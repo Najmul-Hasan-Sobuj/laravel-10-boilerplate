@@ -1,13 +1,11 @@
-<x-admin-app-layout :title="'Role Edit '">
+<x-admin-app-layout :title="'Role Add'">
     <div class="card card-flush">
         <!--begin::Form-->
         <form class="form" action="{{ route('admin.role.store') }}" method="POST">
             @csrf
             <!--begin::Scroll-->
-            <div class="card-body d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll"
-                data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto"
-                data-kt-scroll-dependencies="#kt_modal_update_role_header"
-                data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px">
+            <div class="card-body d-flex flex-column scroll-y me-n7 pe-7"
+                data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
                 <!--begin::Input group-->
                 <div class="fv-row mb-10">
                     <x-metronic.label for="role-name"
@@ -36,44 +34,32 @@
                                     <td>
                                         <!--begin::Checkbox-->
                                         <label class="form-check form-check-sm form-check-custom form-check-solid me-9">
-                                            <input class="form-check-input" type="checkbox" value=""
+                                            <input class="form-check-input metronic_select_all" type="checkbox" value=""
                                                 id="kt_roles_select_all" />
                                             <span class="form-check-label" for="kt_roles_select_all">Select all</span>
                                         </label>
                                         <!--end::Checkbox-->
                                     </td>
                                 </tr>
-                                @foreach ($permissions as $permission)
+                                @foreach ($permissionsByGroups as $group)
                                     <tr>
                                         <!--begin::Label-->
-                                        <td class="text-gray-800">{{$permission->group_name}}</td>
+                                        <td class="text-gray-800">{{$group->group_name}}</td>
                                         <!--end::Label-->
                                         <!--begin::Input group-->
                                         <td>
                                             <!--begin::Wrapper-->
                                             <div class="d-flex">
-                                                <!--begin::Checkbox-->
-                                                <label
-                                                    class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        name="user_management_read" />
-                                                    <span class="form-check-label">Read</span>
-                                                </label>
-                                                <!--end::Checkbox-->
-                                                <!--begin::Checkbox-->
-                                                <label class="form-check form-check-custom form-check-solid me-5 me-lg-20">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        name="user_management_write" />
-                                                    <span class="form-check-label">Write</span>
-                                                </label>
-                                                <!--end::Checkbox-->
-                                                <!--begin::Checkbox-->
-                                                <label class="form-check form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        name="user_management_create" />
-                                                    <span class="form-check-label">Create</span>
-                                                </label>
-                                                <!--end::Checkbox-->
+                                                @foreach ($permissions->where('group_name', $group->group_name) as $permission)
+                                                    <!--begin::Checkbox-->
+                                                    <label
+                                                        class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                        <input class="form-check-input" type="checkbox" value="{{ $permission->name }}"
+                                                            name="permissions[]" />
+                                                        <span class="form-check-label">{{ $permission->name }}</span>
+                                                    </label>
+                                                    <!--end::Checkbox-->
+                                                @endforeach
                                             </div>
                                             <!--end::Wrapper-->
                                         </td>
@@ -103,29 +89,5 @@
             <!--end::Actions-->
         </form>
         <!--end::Form-->
-    </div>
-</x-admin-app-layout>
-
-<x-admin-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form method="POST" action="{{ route('admin.role.store') }}">
-                @csrf
-
-                <!-- Name -->
-                <div>
-                    <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                        required autofocus autocomplete="name" />
-                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                </div>
-
-                <div class="flex items-center justify-end mt-4">
-                    <x-primary-button class="ml-4">
-                        {{ __('Submit') }}
-                    </x-primary-button>
-                </div>
-            </form>
-        </div>
     </div>
 </x-admin-app-layout>

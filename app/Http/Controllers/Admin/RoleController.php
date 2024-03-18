@@ -24,7 +24,7 @@ class RoleController extends Controller
     public function create()
     {
         $data = [
-            'permissionsByGroup' => Permission::select('group_name')
+            'permissionsByGroups' => Permission::select('group_name')
                 ->distinct()
                 ->orderBy('group_name')
                 ->get(),
@@ -40,11 +40,12 @@ class RoleController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(RoleRequest $request)
-    {
-        Role::create(['name' => $request->name]);
+{
+    $role = Role::create(['name' => $request->name])->syncPermissions($request->permissions ?? []);
 
-        return redirect()->back()->with('success', 'Role created successfully');
-    }
+    return redirect()->back()->with('success', 'Role created successfully');
+}
+
 
     /**
      * Display the specified resource.
@@ -59,7 +60,18 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.pages.roles.edit', ['role' => Role::find($id)]);
+        $data = [
+            'role' => Role::findOrFail($id),
+            'permissionsByGroups' => Permission::select('group_name')
+                ->distinct()
+                ->orderBy('group_name')
+                ->get(),
+
+            'permissions' => Permission::orderBy('group_name')
+                ->orderBy('name')
+                ->get(),
+        ];
+        return view('admin.pages.roles.edit', $data);
     }
 
     /**
@@ -67,7 +79,9 @@ class RoleController extends Controller
      */
     public function update(RoleRequest $request, string $id)
     {
-        Role::findOrFail($id)->update(['name' => $request->name]);
+        $role = Role::findOrFail($id);
+        $role->update(['name' => $request->name]);
+        $role->syncPermissions($request->permissions ?? []);
 
         return redirect()->back()->with('success', 'Role updated successfully');
     }

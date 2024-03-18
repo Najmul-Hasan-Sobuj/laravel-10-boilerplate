@@ -21,8 +21,9 @@ class RoleRequest extends FormRequest
      */
     public function rules(): array
     {
+        $role = $this->route('role');
         return [
-            'name' => 'required|string|max:255|unique:roles,name',
+            'name' => 'required|string|max:255|unique:roles,name,' . $role,
         ];
     }
 

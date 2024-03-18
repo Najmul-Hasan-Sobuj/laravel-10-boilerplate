@@ -376,3 +376,11 @@ var metronicModal = function () {
 KTUtil.onDOMContentLoaded(function () {
     metronicModal.init();
 });
+
+//Select All Checkbox
+$('.metronic_select_all').on('change', function() {
+    // Apply check state to all checkboxes
+    $('[type="checkbox"]').prop('checked', $(this).prop('checked'));
+});
+
+

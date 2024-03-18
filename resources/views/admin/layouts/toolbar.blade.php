@@ -17,7 +17,7 @@
                   <!--begin::Item-->
                   @foreach ($breadcrumbs as $breadcrumb)
                       <li class="breadcrumb-item">
-                          <a href="{{ $breadcrumb['url'] }}" class= text-hover-primary">{{ $breadcrumb['name'] }}</a>
+                          <a href="{{ $breadcrumb['url'] }}" class= "text-hover-primary">{{ $breadcrumb['name'] }}</a>
                       </li>
                       <!--end::Item-->
                       <!--begin::Item-->
@@ -39,3 +39,4 @@
       <!--end::Container-->
   </div>
   <!--end::Toolbar-->
+  @dd($namespace);
