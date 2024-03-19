@@ -64,7 +64,10 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        // deprecated
+        return view('admin.pages.users.show', [
+            'user' => Admin::find($id),
+            'roles' => Role::get(),
+        ]);
     }
 
     /**
@@ -84,14 +87,14 @@ class UserController extends Controller
     public function update(Request $request, Admin $user): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . Admin::class . ',email,' . $user->id],
+            'name' => ['nullable', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:' . Admin::class . ',email,' . $user->id],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => $request->name ? $request->name  : $user->name,
+            'email'    => $request->email ? $request->email: $user->email,
             'password' => $request->password ? Hash::make($request->password) : $user->password,
         ]);
 
@@ -114,6 +117,6 @@ class UserController extends Controller
 
         event(new ActivityLogged('User deleted', $user));
 
-        return redirect()->back()->with('success', 'User deleted successfully');
+        // return redirect()->back()->with('success', 'User deleted successfully');
     }
 }

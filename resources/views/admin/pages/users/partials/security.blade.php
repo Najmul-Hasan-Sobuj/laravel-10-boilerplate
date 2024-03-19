@@ -13,21 +13,19 @@
         <!--begin::Table wrapper-->
         <div class="table-responsive">
             <!--begin::Table-->
-            <table class="table align-middle table-row-dashed gy-5"
-                id="kt_table_users_login_session">
+            <table class="table align-middle table-row-dashed gy-5" id="kt_table_users_login_session">
                 <!--begin::Table body-->
                 <tbody class="fs-6 fw-bold text-gray-600">
                     <tr>
                         <td>Email</td>
-                        <td>smith@kpmg.com</td>
+                        <td>{{ $user->email }}</td>
                         <td class="text-end">
-                            <button type="button"
-                                class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto"
-                                data-bs-toggle="modal" data-bs-target="#kt_modal_update_email">
+                            <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto"
+                                data-bs-toggle="modal" data-bs-target="#update_email_{{ $user->id }}">
                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                 <span class="svg-icon svg-icon-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
                                         <path opacity="0.3"
                                             d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
                                             fill="currentColor" />
@@ -42,16 +40,14 @@
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td>******</td>
+                        <td>*************</td>
                         <td class="text-end">
-                            <button type="button"
-                                class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto"
-                                data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_update_password">
+                            <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto"
+                                data-bs-toggle="modal" data-bs-target="#update_password_{{ $user->id }}">
                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                 <span class="svg-icon svg-icon-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
                                         <path opacity="0.3"
                                             d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
                                             fill="currentColor" />
@@ -66,15 +62,20 @@
                     </tr>
                     <tr>
                         <td>Role</td>
-                        <td>Administrator</td>
+                        <td>
+                            @foreach ($user->getRoleNames() as $role)
+                                <!--begin::Badge-->
+                                <div class="badge badge-lg badge-light-primary d-inline">{{ $role }}</div>
+                                <!--begin::Badge-->
+                            @endforeach
+                        </td>
                         <td class="text-end">
-                            <button type="button"
-                                class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto"
-                                data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">
+                            <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto"
+                                data-bs-toggle="modal" data-bs-target="#update_role_{{ $user->id }}">
                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                 <span class="svg-icon svg-icon-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
                                         <path opacity="0.3"
                                             d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
                                             fill="currentColor" />
@@ -97,7 +98,7 @@
     <!--end::Card body-->
 </div>
 <!--end::Card-->
-<!--begin::Card-->
+{{-- <!--begin::Card-->
 <div class="card pt-4 mb-6 mb-xl-9">
     <!--begin::Card header-->
     <div class="card-header border-0">
@@ -111,12 +112,12 @@
         <!--begin::Card toolbar-->
         <div class="card-toolbar">
             <!--begin::Add-->
-            <button type="button" class="btn btn-light-primary btn-sm"
-                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+            <button type="button" class="btn btn-light-primary btn-sm" data-kt-menu-trigger="click"
+                data-kt-menu-placement="bottom-end">
                 <!--begin::Svg Icon | path: icons/duotune/technology/teh004.svg-->
                 <span class="svg-icon svg-icon-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" fill="none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none">
                         <path opacity="0.3"
                             d="M21 10.7192H3C2.4 10.7192 2 11.1192 2 11.7192C2 12.3192 2.4 12.7192 3 12.7192H6V14.7192C6 18.0192 8.7 20.7192 12 20.7192C15.3 20.7192 18 18.0192 18 14.7192V12.7192H21C21.6 12.7192 22 12.3192 22 11.7192C22 11.1192 21.6 10.7192 21 10.7192Z"
                             fill="currentColor" />
@@ -162,13 +163,12 @@
             <!--begin::Action-->
             <div class="d-flex justify-content-end align-items-center">
                 <!--begin::Button-->
-                <button type="button"
-                    class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto me-5"
+                <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto me-5"
                     data-bs-toggle="modal" data-bs-target="#kt_modal_add_one_time_password">
                     <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                     <span class="svg-icon svg-icon-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
                             <path opacity="0.3"
                                 d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
                                 fill="currentColor" />
@@ -181,21 +181,19 @@
                 </button>
                 <!--end::Button-->
                 <!--begin::Button-->
-                <button type="button"
-                    class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto"
+                <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto"
                     id="kt_users_delete_two_step">
                     <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                     <span class="svg-icon svg-icon-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
                             <path
                                 d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z"
                                 fill="currentColor" />
                             <path opacity="0.5"
                                 d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z"
                                 fill="currentColor" />
-                            <path opacity="0.5"
-                                d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
+                            <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z"
                                 fill="currentColor" />
                         </svg>
                     </span>
@@ -241,8 +239,7 @@
                 <!--begin::Checkbox-->
                 <div class="form-check form-check-custom form-check-solid">
                     <!--begin::Input-->
-                    <input class="form-check-input me-3" name="email_notification_0"
-                        type="checkbox" value="0"
+                    <input class="form-check-input me-3" name="email_notification_0" type="checkbox" value="0"
                         id="kt_modal_update_email_notification_0" checked='checked' />
                     <!--end::Input-->
                     <!--begin::Label-->
@@ -262,8 +259,7 @@
                 <!--begin::Checkbox-->
                 <div class="form-check form-check-custom form-check-solid">
                     <!--begin::Input-->
-                    <input class="form-check-input me-3" name="email_notification_1"
-                        type="checkbox" value="1"
+                    <input class="form-check-input me-3" name="email_notification_1" type="checkbox" value="1"
                         id="kt_modal_update_email_notification_1" />
                     <!--end::Input-->
                     <!--begin::Label-->
@@ -283,8 +279,7 @@
                 <!--begin::Checkbox-->
                 <div class="form-check form-check-custom form-check-solid">
                     <!--begin::Input-->
-                    <input class="form-check-input me-3" name="email_notification_2"
-                        type="checkbox" value="2"
+                    <input class="form-check-input me-3" name="email_notification_2" type="checkbox" value="2"
                         id="kt_modal_update_email_notification_2" />
                     <!--end::Input-->
                     <!--begin::Label-->
@@ -304,8 +299,7 @@
                 <!--begin::Checkbox-->
                 <div class="form-check form-check-custom form-check-solid">
                     <!--begin::Input-->
-                    <input class="form-check-input me-3" name="email_notification_3"
-                        type="checkbox" value="3"
+                    <input class="form-check-input me-3" name="email_notification_3" type="checkbox" value="3"
                         id="kt_modal_update_email_notification_3" checked='checked' />
                     <!--end::Input-->
                     <!--begin::Label-->
@@ -325,8 +319,7 @@
                 <!--begin::Checkbox-->
                 <div class="form-check form-check-custom form-check-solid">
                     <!--begin::Input-->
-                    <input class="form-check-input me-3" name="email_notification_4"
-                        type="checkbox" value="4"
+                    <input class="form-check-input me-3" name="email_notification_4" type="checkbox" value="4"
                         id="kt_modal_update_email_notification_4" checked='checked' />
                     <!--end::Input-->
                     <!--begin::Label-->
@@ -346,8 +339,7 @@
                 <!--begin::Checkbox-->
                 <div class="form-check form-check-custom form-check-solid">
                     <!--begin::Input-->
-                    <input class="form-check-input me-3" name="email_notification_5"
-                        type="checkbox" value="5"
+                    <input class="form-check-input me-3" name="email_notification_5" type="checkbox" value="5"
                         id="kt_modal_update_email_notification_5" />
                     <!--end::Input-->
                     <!--begin::Label-->
@@ -367,8 +359,7 @@
                 <!--begin::Checkbox-->
                 <div class="form-check form-check-custom form-check-solid">
                     <!--begin::Input-->
-                    <input class="form-check-input me-3" name="email_notification_6"
-                        type="checkbox" value="6"
+                    <input class="form-check-input me-3" name="email_notification_6" type="checkbox" value="6"
                         id="kt_modal_update_email_notification_6" />
                     <!--end::Input-->
                     <!--begin::Label-->
@@ -388,8 +379,7 @@
                 <!--begin::Checkbox-->
                 <div class="form-check form-check-custom form-check-solid">
                     <!--begin::Input-->
-                    <input class="form-check-input me-3" name="email_notification_7"
-                        type="checkbox" value="7"
+                    <input class="form-check-input me-3" name="email_notification_7" type="checkbox" value="7"
                         id="kt_modal_update_email_notification_7" />
                     <!--end::Input-->
                     <!--begin::Label-->
@@ -409,8 +399,7 @@
                 <!--begin::Checkbox-->
                 <div class="form-check form-check-custom form-check-solid">
                     <!--begin::Input-->
-                    <input class="form-check-input me-3" name="email_notification_8"
-                        type="checkbox" value="8"
+                    <input class="form-check-input me-3" name="email_notification_8" type="checkbox" value="8"
                         id="kt_modal_update_email_notification_8" />
                     <!--end::Input-->
                     <!--begin::Label-->
@@ -431,12 +420,10 @@
                     id="kt_users_email_notification_cancel">Cancel</button>
                 <!--end::Button-->
                 <!--begin::Button-->
-                <button type="button" class="btn btn-primary"
-                    id="kt_users_email_notification_submit">
+                <button type="button" class="btn btn-primary" id="kt_users_email_notification_submit">
                     <span class="indicator-label">Save</span>
                     <span class="indicator-progress">Please wait...
-                        <span
-                            class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                 </button>
                 <!--end::Button-->
             </div>
@@ -447,4 +434,4 @@
     <!--end::Card body-->
     <!--begin::Card footer-->
     <!--end::Card footer-->
-</div>
+</div> --}}

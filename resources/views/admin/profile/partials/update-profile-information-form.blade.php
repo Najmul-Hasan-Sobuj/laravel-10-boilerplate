@@ -1,5 +1,5 @@
 <!--begin::Profile Information-->
-<div class="card">
+<div class="card card-flash">
     <!--begin::Card header-->
     <div class="card-header border-0 cursor-pointer">
         <div class="card-title m-0">

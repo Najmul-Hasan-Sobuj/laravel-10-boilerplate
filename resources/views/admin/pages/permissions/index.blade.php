@@ -28,8 +28,7 @@
             <!--begin::Card toolbar-->
             <div class="card-toolbar">
                 <!--begin::Button-->
-                <button type="button" class="btn btn-light-primary rounded-2" data-bs-toggle="modal"
-                    data-bs-target="#kt_modal_add_permission">
+                <a href="{{ route('admin.permission.create') }}" class="btn btn-light-primary rounded-2">
                     <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -42,7 +41,7 @@
                                 fill="currentColor" />
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->Add Permission</button>
+                    <!--end::Svg Icon-->Add Permission</a>
 
             </div>
         </div>
@@ -90,25 +89,22 @@
                             <td>{{ $permission->created_at }}</td>
                             <td class="text-end">
                                 <!--begin::Update-->
-                                <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-3"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_update_permission-{{ $permission->id }}">
+                                <a href="{{ route('admin.permission.edit',$permission->id) }}" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
                                     <span class="svg-icon svg-icon-3">
                                         <i class="fas fa-pen"></i>
                                     </span>
                                     <!--end::Svg Icon-->
-                                </button>
+                                </a>
                                 <!--end::Update-->
                                 <!--begin::Delete-->
-                                <button class="btn btn-icon btn-active-light-danger w-30px h-30px"
-                                    data-kt-permissions-table-filter="delete_row">
+                                <a href="{{ route('admin.permission.destroy',$permission->id) }}" class="btn btn-icon btn-active-light-danger w-30px h-30px delete">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                     <span class="svg-icon svg-icon-3">
                                         <i class="fas fa-trash-alt"></i>
                                     </span>
                                     <!--end::Svg Icon-->
-                                </button>
+                                </a>
                                 <!--end::Delete-->
                             </td>
                             <!--end::Action=-->
@@ -121,194 +117,4 @@
             <!--end::Table-->
         </div>
     </div>
-
-
-    <div class="modal fade metronic_modal" id="kt_modal_add_permission" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header">
-                    <!--begin::Modal title-->
-                    <h2 class="fw-bolder">Add a Permission</h2>
-                    <!--end::Modal title-->
-                    <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-permissions-modal-action="close">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none">
-                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                    transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                    transform="rotate(45 7.41422 6)" fill="currentColor" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--end::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                    <!--begin::Form-->
-                    <form class="form" action="{{ route('admin.permission.store') }}" method="POST">
-                        @csrf
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <x-metronic.label for="goup-name"
-                                class="col-form-label fw-bold fs-6">{{ __('Group Name') }}
-                            </x-metronic.label>
-
-                            <x-metronic.input id="goup-name" type="text" name="group_name" :value="old('group_name')"
-                                placeholder="Enter the permission Group name"></x-metronic.input>
-                        </div>
-                        <div class="fv-row mb-7">
-                            <x-metronic.label for="permission-add-name"
-                                class="col-form-label required fw-bold fs-6">{{ __('Permission Name') }} <i
-                                    class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
-                                    data-bs-trigger="hover" data-bs-html="true"
-                                    data-bs-content="Permission name is required to be unique."></i>
-                            </x-metronic.label>
-
-                            <x-metronic.input id="permission-add-name" type="text" name="name" :value="old('name')"
-                                placeholder="Enter the permission name" required></x-metronic.input>
-                            <!--begin::Input-->
-                            {{-- <input class="form-control form-control-solid" placeholder="Enter a permission name"
-                                name="name" value="{{ old('name') }}" />
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
-                            <!--end::Input-->
-                        </div>
-
-
-                        <div class="text-center pt-15">
-                            <button type="reset" class="btn btn-light me-3"
-                                data-kt-permissions-modal-action="cancel">Discard</button>
-                            <x-metronic.button type="submit" class="primary">
-                                {{ __('Submit') }}
-                            </x-metronic.button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end::Form-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-
-
-    @foreach ($permissions as $permission)
-        <div class="modal fade metronic_modal" id="kt_modal_update_permission-{{ $permission->id }}" tabindex="-1"
-            aria-hidden="true">
-            <!--begin::Modal dialog-->
-            <div class="modal-dialog modal-dialog-centered mw-650px">
-                <!--begin::Modal content-->
-                <div class="modal-content">
-                    <!--begin::Modal header-->
-                    <div class="modal-header">
-                        <!--begin::Modal title-->
-                        <h2 class="fw-bolder">Update Permission</h2>
-                        <!--end::Modal title-->
-                        <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                            data-kt-permissions-modal-action="close">
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                        rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </div>
-                        <!--end::Close-->
-                    </div>
-                    <!--end::Modal header-->
-                    <!--begin::Modal body-->
-                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                        <!--begin::Notice-->
-                        <!--begin::Notice-->
-                        <div
-                            class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-9 p-6">
-                            <!--begin::Icon-->
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10"
-                                        fill="currentColor" />
-                                    <rect x="11" y="14" width="7" height="2" rx="1"
-                                        transform="rotate(-90 11 14)" fill="currentColor" />
-                                    <rect x="11" y="17" width="2" height="2" rx="1"
-                                        transform="rotate(-90 11 17)" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                            <!--end::Icon-->
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack flex-grow-1">
-                                <!--begin::Content-->
-                                <div class="fw-bold">
-                                    <div class="fs-8 text-gray-700">
-                                        <strong class="me-1">Warning!</strong>By editing the permission name, you
-                                        might
-                                        break the system permissions functionality. Please ensure you're absolutely
-                                        certain
-                                        before proceeding.
-                                    </div>
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end::Wrapper-->
-                        </div>
-                        <form class="form" action="{{ route('admin.permission.update', $permission->id) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-7">
-                                <x-metronic.label for="goup-name"
-                                    class="col-form-label fw-bold fs-6">{{ __('Group Name') }}
-                                </x-metronic.label>
-
-                                <x-metronic.input id="goup-name" type="text" name="group_name" :value="old('group_name', $permission->group_name)"
-                                    placeholder="Enter the permission Group name"></x-metronic.input>
-                            </div>
-                            <div class="fv-row mb-7">
-                                <x-metronic.label for="permission-update-name"
-                                    class="col-form-label required fw-bold fs-6">{{ __('Permission Name') }} <i
-                                        class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
-                                        data-bs-trigger="hover" data-bs-html="true"
-                                        data-bs-content="Permission name is required to be unique."></i>
-                                </x-metronic.label>
-
-                                <x-metronic.input id="permission-update-name" type="text" name="name" :value="old('name', $permission->name)"
-                                    placeholder="Enter the permission name"></x-metronic.input>
-                            </div>
-
-                            <!--begin::Actions-->
-                            <div class="text-center pt-15">
-                                <button type="reset" class="btn btn-light me-3"
-                                    data-kt-permissions-modal-action="cancel">Discard</button>
-                                <x-metronic.button type="submit" class="primary">
-                                    {{ __('Save Changes') }}
-                                </x-metronic.button>
-                            </div>
-                            <!--end::Actions-->
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Modal body-->
-                </div>
-                <!--end::Modal content-->
-            </div>
-            <!--end::Modal dialog-->
-        </div>
-    @endforeach
 </x-admin-app-layout>

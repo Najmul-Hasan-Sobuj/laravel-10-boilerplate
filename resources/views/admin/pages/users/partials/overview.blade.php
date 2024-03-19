@@ -1,4 +1,4 @@
-<!--begin::Card-->
+{{-- <!--begin::Card-->
 <div class="card card-flush mb-6 mb-xl-9">
     <!--begin::Card header-->
     <div class="card-header mt-6">
@@ -1945,4 +1945,4 @@
     </div>
     <!--end::Card body-->
 </div>
-<!--end::Tasks-->
+<!--end::Tasks--> --}}

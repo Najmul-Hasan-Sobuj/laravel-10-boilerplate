@@ -80,10 +80,8 @@
             <!--end::Scroll-->
             <!--begin::Actions-->
             <div class="card-footer text-center">
-                <button type="reset" class="btn btn-light me-3"
-                    data-kt-roles-modal-action="cancel">Discard</button>
                     <x-metronic.button type="submit" class="primary">
-                        {{ __('Save Changes') }}
+                        {{ __('Submit') }}
                     </x-metronic.button>
             </div>
             <!--end::Actions-->

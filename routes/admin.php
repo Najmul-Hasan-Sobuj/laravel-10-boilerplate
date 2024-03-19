@@ -65,10 +65,15 @@ Route::middleware('auth:admin', 'role:admin')->prefix('admin')->name('admin.')->
         [
             'role'           => RoleController::class,
             'permission'     => PermissionController::class,
-            'user'           => UserController::class,
             'email-settings' => EmailSettingController::class,
         ],
         ['except' => ['show']]
+    );
+    Route::resources(
+        [
+            'user'           => UserController::class,
+            'categories'     => CategoryController::class,
+        ],
     );
 
     Route::get('role/{roleId}/give-permission', [RoleController::class, 'givePermission'])->name('role.give-permission');
@@ -78,8 +83,6 @@ Route::middleware('auth:admin', 'role:admin')->prefix('admin')->name('admin.')->
     Route::get('log/{id}', [LogController::class, 'show'])->name('log.show');
     Route::delete('log/{id}', [LogController::class, 'destroy'])->name('log.destroy');
     Route::get('log/download/{id}', [LogController::class, 'download'])->name('log.download');
-
-    Route::resource('categories', CategoryController::class);
 
     Route::get('activity_logs', [ActivityLogController::class, 'index'])->name('activity_logs.index');
     Route::get('activity_logs/{activity_log}', [ActivityLogController::class, 'show'])->name('activity_logs.show');
