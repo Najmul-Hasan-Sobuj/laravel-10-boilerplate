@@ -21,8 +21,6 @@
                       </li>
                       <!--end::Item-->
                       <!--begin::Item-->
-
-
                       @if ($loop->last)
                       @else
                           <li class="breadcrumb-item">
@@ -39,4 +37,3 @@
       <!--end::Container-->
   </div>
   <!--end::Toolbar-->
-  @dd($namespace);
