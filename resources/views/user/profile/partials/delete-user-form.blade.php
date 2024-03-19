@@ -1,55 +1,60 @@
-<section class="space-y-6">
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Delete Account') }}
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
-        </p>
-    </header>
-
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
-
-    <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
-            @csrf
-            @method('delete')
-
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Are you sure you want to delete your account?') }}
-            </h2>
-
-            <p class="mt-1 text-sm text-gray-600">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-            </p>
-
-            <div class="mt-6">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
-
-                <x-text-input
-                    id="password"
-                    name="password"
-                    type="password"
-                    class="mt-1 block w-3/4"
-                    placeholder="{{ __('Password') }}"
-                />
-
-                <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+<div class="card card-flash mt-5">
+    <!--begin::Card header-->
+    <div class="card-header border-0 cursor-pointer">
+        <div class="card-title m-0">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="fw-bolder m-0"> {{ __('Delete Account') }} </h3>
+                </div>
+                <div class="col-12">
+                    <p class="mt-1 mb-0 text-sm text-gray-600 fs-7">
+                        {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+                    </p>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
-
-                <x-danger-button class="ml-3">
+    <div class="card-body border-top p-9">
+        <!--begin::Input group-->
+        <div class="row">
+            <div class="col-8">
+                <div class="menu-item px-3">
+                    <div class="menu-content d-flex align-items-center px-3">
+                        <!--begin::Avatar-->
+                        <div class="symbol symbol-50px me-5">
+                            <img alt="Logo" src="{{ asset('admin/assets/media/svg/avatars/blank-dark.svg') }}" />
+                        </div>
+                        <!--end::Avatar-->
+                        <!--begin::Username-->
+                        <div class="d-flex flex-column">
+                            <div class="fw-bolder d-flex align-items-center fs-5">
+                                {{ Auth::user()->name }}
+                            </div>
+                            <a href="#" class="fw-bold text-muted text-hover-primary fs-7">
+                                {{ Auth::user()->email }}
+                            </a>
+                        </div>
+                        <!--end::Username-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 d-flex align-items-center">
+                {{-- <x-danger-button x-data=""
+                    x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('Delete Account') }}</x-danger-button> --}}
+                <a class="delete-account btn btn-danger font-weight-bold mr-2" href="{{ route('profile.destroy') }}"
+                data-check-password-url="{{ route('checkPassword') }}" >
                     {{ __('Delete Account') }}
-                </x-danger-button>
+                </a>
+
+
             </div>
-        </form>
-    </x-modal>
-</section>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+

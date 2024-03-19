@@ -1,5 +1,5 @@
 <!--begin::Update Password-->
-<div class="card mt-5">
+<div class="card card-flash mt-5">
     <!--begin::Card header-->
     <div class="card-header border-0 cursor-pointer">
         <div class="card-title m-0">
