@@ -113,12 +113,12 @@
         <!--end::Modal body-->
     </div>
 
-    <div class="py-12">
+    {{-- <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form method="POST" action="{{ route('admin.email-settings.store') }}">
                 @csrf
 
-                {{-- <!-- Mailer -->
+                <!-- Mailer -->
                 <div>
                     <x-input-label for="mail_mailer" :value="__('Mailer')" />
                     <x-text-input id="mail_mailer" class="block mt-1 w-full" type="text" name="mail_mailer"
@@ -132,10 +132,10 @@
                     <x-text-input id="mail_host" class="block mt-1 w-full" type="text" name="mail_host"
                         :value="old('mail_host')" required autofocus autocomplete="mail_host" />
                     <x-input-error :messages="$errors->get('mail_host')" class="mt-2" />
-                </div> --}}
+                </div>
 
                 <!-- Port -->
-                {{-- <div>
+                <div>
                     <x-input-label for="mail_port" :value="__('Port')" />
                     <x-text-input id="mail_port" class="block mt-1 w-full" type="text" name="mail_port"
                         :value="old('mail_port')" required autofocus autocomplete="mail_port" />
@@ -201,8 +201,8 @@
                     <x-primary-button class="ml-4">
                         {{ __('Submit') }}
                     </x-primary-button>
-                </div> --}}
+                </div>
             </form>
         </div>
-    </div>
+    </div> --}}
 </x-admin-app-layout>

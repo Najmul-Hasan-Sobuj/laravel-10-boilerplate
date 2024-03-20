@@ -28,7 +28,7 @@ class EmailSettingRequest extends FormRequest
                     return [
                         'mail_mailer' => 'required|string|max:50',
                         'mail_host' => 'required|string|max:100',
-                        'mail_port' => 'required|integer|max:10',
+                        'mail_port' => 'required|integer',
                         'mail_username' => 'required|string|max:100',
                         'mail_password' => 'required|string|max:100',
                         'mail_encryption' => 'required|string|max:10',
