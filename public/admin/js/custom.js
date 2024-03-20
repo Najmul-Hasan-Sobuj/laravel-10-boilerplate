@@ -8,6 +8,117 @@ $('.metronic_select_all').on('change', function() {
     $('[type="checkbox"]').prop('checked', $(this).prop('checked'));
 });
 
+// Password Show and Hide
+$(document).ready(function() {
+    $('.toggle-password').click(function() {
+        const passwordInput = $(this).closest('.position-relative').find('input');
+        const isVisible = passwordInput.attr('type') === 'text';
+        passwordInput.attr('type', isVisible ? 'password' : 'text');
+        $(this).find('.bi-eye').toggleClass('d-none');
+        $(this).find('.bi-eye-slash').toggleClass('d-none');
+    });
+});
+function passwordMeter(inputElement, highlightElement, options) {
+    var checkSteps, score;
+
+    var check = function () {
+        var e = 0,
+            t = m();
+        !0 === l() && (e += t),
+        !0 === options.checkUppercase && !0 === s() && (e += t),
+        !0 === options.checkLowercase && !0 === u() && (e += t),
+        !0 === options.checkDigit && !0 === d() && (e += t),
+        !0 === options.checkChar && !0 === c() && (e += t),
+        (score = e),
+        f();
+    };
+
+    var l = function () {
+        return inputElement.value.length >= options.minLength;
+    };
+
+    var s = function () {
+        return /[a-z]/.test(inputElement.value);
+    };
+
+    var u = function () {
+        return /[A-Z]/.test(inputElement.value);
+    };
+
+    var d = function () {
+        return /[0-9]/.test(inputElement.value);
+    };
+
+    var c = function () {
+        return /[~`!#@$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(inputElement.value);
+    };
+
+    var m = function () {
+        var e = 1;
+        return (
+            !0 === options.checkUppercase && e++,
+            !0 === options.checkLowercase && e++,
+            !0 === options.checkDigit && e++,
+            !0 === options.checkChar && e++,
+            (checkSteps = e),
+            100 / checkSteps
+        );
+    };
+
+    var f = function () {
+        var e = [].slice.call(highlightElement.querySelectorAll("div")),
+            t = e.length,
+            i = 0,
+            r = m(),
+            o = g();
+        e.map(function (e) {
+            i++,
+            r * i * (checkSteps / t) <= o
+                ? e.classList.add("active")
+                : e.classList.remove("active");
+        });
+    };
+
+    var g = function () {
+        return score;
+    };
+
+    // Check the password strength on initialization
+    check();
+
+    // Expose public methods
+    return {
+        check: check,
+        getScore: g
+    };
+}
+
+$(document).ready(function() {
+    var inputElement = document.querySelector('.password_input');
+    var highlightElement = document.querySelector('.d-flex[data-kt-password-meter-control="highlight"]');
+
+    var options = {
+        minLength: 8, // Minimum password length
+        checkUppercase: true, // Check for uppercase letters
+        checkLowercase: true, // Check for lowercase letters
+        checkDigit: true, // Check for digits
+        checkChar: true // Check for special characters
+    };
+
+    // Initialize password meter
+    var meter = passwordMeter(inputElement, highlightElement, options);
+
+    // Toggle password visibility
+
+
+    // Example usage: Whenever the password input changes, update the password meter
+    inputElement.addEventListener('input', function() {
+        meter.check();
+    });
+});
+
+
+
 // Delete action with reload page
 $(document).on('click', '.delete', function (e) {
     e.preventDefault();
