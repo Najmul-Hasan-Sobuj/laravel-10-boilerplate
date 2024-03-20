@@ -16,6 +16,7 @@
         .cascading-right {
             margin-right: -50px;
         }
+
         @media (max-width: 991.98px) {
             .cascading-right {
                 margin-right: 0;
@@ -23,7 +24,7 @@
         }
     </style>
     <!-- Scripts -->
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
@@ -57,7 +58,7 @@
     <section class="text-center text-lg-start">
         <!-- Jumbotron -->
         <div class="container py-4">
-           {{ $slot }}
+            {{ $slot }}
         </div>
         <!-- Jumbotron -->
     </section>
