@@ -2,6 +2,11 @@
 //     $('.js-example-basic-multiple, .js-example-basic-single').select2();
 // });
 
+//Select All Checkbox
+$('.metronic_select_all').on('change', function() {
+    // Apply check state to all checkboxes
+    $('[type="checkbox"]').prop('checked', $(this).prop('checked'));
+});
 
 // Delete action with reload page
 $(document).on('click', '.delete', function (e) {
@@ -233,10 +238,7 @@ KTUtil.onDOMContentLoaded(function () {
     metronicModal.init();
 });
 
-//Select All Checkbox
-$('.metronic_select_all').on('change', function() {
-    // Apply check state to all checkboxes
-    $('[type="checkbox"]').prop('checked', $(this).prop('checked'));
-});
+
+
 
 
