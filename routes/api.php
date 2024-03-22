@@ -25,7 +25,6 @@ Route::prefix('v1')->group(function () {
 
 Route::post('/register', [UserApiController::class, 'register']);
 Route::post('/login', [UserApiController::class, 'login']);
-Route::post('/send-reset-password', [UserApiController::class, 'sendResetPassword']);
 Route::post('/reset-password/{token}', [UserApiController::class, 'reset']);
 Route::post('/forgot-password', [UserApiController::class, 'forgotPassword']);
 

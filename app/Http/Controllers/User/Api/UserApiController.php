@@ -94,44 +94,6 @@ class UserApiController extends Controller
         ], 200);
     }
 
-    public function sendResetPassword(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-        ]);
-        $email = $request->email;
-
-        // Check User's Email Exists or Not
-        $user = User::where('email', $email)->first();
-        if (!$user) {
-            return response([
-                'message' => 'Email doesnt exists',
-                'status' => 'failed'
-            ], 404);
-        }
-
-        // Generate Token
-        $token = Str::random(60);
-
-        // Saving Data to Password Reset Table
-        DB::table('password_reset_tokens')->upsert([
-            'email' => $email,
-            'token' => $token,
-            'created_at' => now()
-        ], ['email'], ['token', 'created_at']);
-
-        // Sending EMail with Password Reset Token
-        Mail::raw("Your password reset token is: $token", function ($message) use ($email) {
-            $message->subject('Reset Your Password');
-            $message->to($email);
-        });
-
-        return response([
-            'message' => 'Password Reset Email Sent... Check Your Email',
-            'status' => 'success'
-        ], 200);
-    }
-
     public function reset(Request $request, $token)
     {
         // Delete Token older than 2 minute
