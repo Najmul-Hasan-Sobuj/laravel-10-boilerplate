@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use DataTables;
 use App\Models\EmailSetting;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\EmailSettingRequest;
 
 class EmailSettingController extends Controller

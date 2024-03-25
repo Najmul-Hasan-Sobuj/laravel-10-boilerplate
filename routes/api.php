@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Api\CategoryApiController;
 use App\Http\Controllers\User\Api\UserApiController;
@@ -16,13 +15,6 @@ use App\Http\Controllers\User\Api\UserApiController;
 |
 */
 
-// Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
-// });
-
-Route::prefix('v1')->group(function () {
-    Route::apiResource('categories', CategoryApiController::class);
-});
-
 Route::post('/register', [UserApiController::class, 'register']);
 Route::post('/login', [UserApiController::class, 'login']);
 Route::post('/reset-password/{token}', [UserApiController::class, 'reset']);
@@ -33,4 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/change-password', [UserApiController::class, 'updatePassword']);
     Route::get('/profile', [UserApiController::class, 'profile']);
     Route::put('/profile', [UserApiController::class, 'editProfile']);
+    Route::apiResource('categories', CategoryApiController::class);
 });

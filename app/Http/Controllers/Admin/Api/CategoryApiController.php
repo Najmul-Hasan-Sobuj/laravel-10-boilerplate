@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Api;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CategoryRequest;
 
 class CategoryApiController extends Controller
 {
@@ -16,13 +17,6 @@ class CategoryApiController extends Controller
     public function index()
     {
         return Category::get();
-
-        // $data = Category::get();
-        // return response()->json([
-        //     'status' => 1,
-        //     'message' => 'all Students Data',
-        //     'data' => $data,
-        // ]);
     }
 
     /**
@@ -31,7 +25,7 @@ class CategoryApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         return Category::create($request->all());
     }
@@ -54,7 +48,7 @@ class CategoryApiController extends Controller
      * @param  Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->all());
         return $category;

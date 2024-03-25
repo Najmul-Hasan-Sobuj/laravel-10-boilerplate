@@ -3,7 +3,7 @@
         {{ $slot }}
     </a>
 @else
-    <button type="{{ $type ?? 'button' }}" class="btn btn-{{ $class ?? 'primary' }}">
+    <button type="{{ $type ?? 'button' }}" class="btn btn-{{ $class ?? 'primary' }}" onclick="this.disabled = true; this.form.submit();">
         {{ $slot }}
     </button>
 @endif

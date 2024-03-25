@@ -3,14 +3,14 @@
 // });
 
 //Select All Checkbox
-$('.metronic_select_all').on('change', function() {
+$('.metronic_select_all').on('change', function () {
     // Apply check state to all checkboxes
     $('[type="checkbox"]').prop('checked', $(this).prop('checked'));
 });
 
 // Password Show and Hide
-$(document).ready(function() {
-    $('.toggle-password').click(function() {
+$(document).ready(function () {
+    $('.toggle-password').click(function () {
         const passwordInput = $(this).closest('.position-relative').find('input');
         const isVisible = passwordInput.attr('type') === 'text';
         passwordInput.attr('type', isVisible ? 'password' : 'text');
@@ -25,12 +25,12 @@ function passwordMeter(inputElement, highlightElement, options) {
         var e = 0,
             t = m();
         !0 === l() && (e += t),
-        !0 === options.checkUppercase && !0 === s() && (e += t),
-        !0 === options.checkLowercase && !0 === u() && (e += t),
-        !0 === options.checkDigit && !0 === d() && (e += t),
-        !0 === options.checkChar && !0 === c() && (e += t),
-        (score = e),
-        f();
+            !0 === options.checkUppercase && !0 === s() && (e += t),
+            !0 === options.checkLowercase && !0 === u() && (e += t),
+            !0 === options.checkDigit && !0 === d() && (e += t),
+            !0 === options.checkChar && !0 === c() && (e += t),
+            (score = e),
+            f();
     };
 
     var l = function () {
@@ -73,9 +73,9 @@ function passwordMeter(inputElement, highlightElement, options) {
             o = g();
         e.map(function (e) {
             i++,
-            r * i * (checkSteps / t) <= o
-                ? e.classList.add("active")
-                : e.classList.remove("active");
+                r * i * (checkSteps / t) <= o
+                    ? e.classList.add("active")
+                    : e.classList.remove("active");
         });
     };
 
@@ -93,7 +93,7 @@ function passwordMeter(inputElement, highlightElement, options) {
     };
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     var inputElement = document.querySelector('.password_input');
     var highlightElement = document.querySelector('.d-flex[data-kt-password-meter-control="highlight"]');
 
@@ -112,7 +112,7 @@ $(document).ready(function() {
 
 
     // Example usage: Whenever the password input changes, update the password meter
-    inputElement.addEventListener('input', function() {
+    inputElement.addEventListener('input', function () {
         meter.check();
     });
 });
