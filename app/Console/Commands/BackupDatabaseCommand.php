@@ -28,7 +28,8 @@ class BackupDatabaseCommand extends Command
         $databaseName = config('database.connections.mysql.database');
         $userName = config('database.connections.mysql.username');
         $password = config('database.connections.mysql.password');
-        $fileName = storage_path('app/backup.sql');
+        $date = date('Y-m-d_H-i-s');
+        $fileName = storage_path("app/{$databaseName}_{$date}_backup.sql");
 
         exec("mysqldump -u $userName -p$password $databaseName > $fileName");
     }

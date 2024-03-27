@@ -78,6 +78,7 @@ Route::middleware('auth:admin', 'role:admin')->prefix('admin')->name('admin.')->
         ],
     );
     Route::get('/backup', [Controller::class, 'downloadBackup']);
+    
     Route::get('role/{roleId}/give-permission', [RoleController::class, 'givePermission'])->name('role.give-permission');
     Route::patch('role/{roleId}/give-permission', [RoleController::class, 'storePermission'])->name('role.store-permission');
 
