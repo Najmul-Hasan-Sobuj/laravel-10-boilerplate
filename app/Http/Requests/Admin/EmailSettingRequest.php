@@ -32,9 +32,9 @@ class EmailSettingRequest extends FormRequest
                         'mail_username' => 'required|string|max:100',
                         'mail_password' => 'required|string|max:100',
                         'mail_encryption' => 'required|string|max:10',
-                        'mail_from_address' => 'required|email|max:100',
+                        'mail_from_address' => 'required|email:rfc,dns',
                         'mail_from_name' => 'required|string|max:100',
-                        'status' => 'required|boolean',
+                        'status' => 'required|in:0,1',
                     ];
                 }
             case 'DELETE': {

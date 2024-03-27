@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('mail_encryption', 10)->nullable();
             $table->string('mail_from_address', 100)->nullable();
             $table->string('mail_from_name', 100)->nullable();
-            $table->boolean('status')->default(false);
+            $table->boolean('status')->default(false)->comment('0 for inactive, 1 for active');
             $table->timestamps();
         });
     }

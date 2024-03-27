@@ -1,8 +1,6 @@
-use Illuminate\Support\Facades\Storage;
 <?php
 
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 // if (!function_exists('myHelper')) { // example of a helper function

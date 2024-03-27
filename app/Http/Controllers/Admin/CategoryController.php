@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
-use App\Events\ActivityLogged;
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\CategoryRequest;
 
 class CategoryController extends Controller

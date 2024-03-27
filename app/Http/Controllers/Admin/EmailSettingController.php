@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\EmailSetting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\Facades\DataTables;
+use DataTables;
 use App\Http\Requests\Admin\EmailSettingRequest;
 
 class EmailSettingController extends Controller
@@ -24,8 +24,12 @@ class EmailSettingController extends Controller
                 </div>';
                 })
                 ->addColumn('status', function ($row) {
-                    $status = $row->status == '1' ? 'Active' : 'Inactive';
-                    return '<span class="badge badge-light-' . ($status == 'Active' ? 'success' : 'danger') . ' fs-7 m-1">' . $status . '</span>';
+                    $switchId = 'status_switch_' . $row->id;
+                    // Create a Bootstrap toggle switch for status
+                    $toggleSwitch = '<div class="form-check form-switch form-check-custom form-check-solid">
+                                        <input class="form-check-input status-toggle" type="checkbox" id="' . $switchId . '" data-route="' . route('admin.email-settings.toggle-status', $row->id) . '" data-id="' . $row->id . '" ' . ($row->status == 1 ? 'checked' : '') . '>
+                                    </div>';
+                    return $toggleSwitch;
                 })
                 ->addColumn('action', function ($row) {
                     $editUrl = route('admin.email-settings.edit', [$row->id]);
@@ -114,5 +118,16 @@ class EmailSettingController extends Controller
     public function destroy(string $id)
     {
         EmailSetting::findOrFail($id)->delete();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function toggleStatus(string $id)
+    {
+        $emailSetting = EmailSetting::findOrFail($id);
+        $emailSetting->status = !$emailSetting->status;
+        $emailSetting->save();
+        return response()->json(['success' => $emailSetting->status]);
     }
 }

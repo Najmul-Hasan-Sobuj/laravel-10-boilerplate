@@ -350,6 +350,41 @@ KTUtil.onDOMContentLoaded(function () {
 });
 
 
+window.toggleStatus = function (route, id) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
 
+    const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
+    $.ajax({
+        url: route.replace(':id', id),
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        success: function (response) {
+            $(`#flexSwitchDefault${id}`).prop('checked', response.status);
+            Toast.fire({
+                icon: 'success',
+                title: response.message
+            });
+        },
+        error: function (xhr) {
+            console.error('Error - ' + xhr.status + ': ' + xhr.statusText);
+            Toast.fire({
+                icon: 'error',
+                title: 'An error occurred'
+            });
+        }
+    });
+}
 
